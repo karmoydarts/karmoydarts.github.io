@@ -1,0 +1,897 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Sammenlagtranking, kveldsresultater, 180ere, raske legg og hoye utganger for Karmoy Darts Club, sesong 2026.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Karmøy Darts Club">
+<meta property="og:title" content="Karmøy Darts Club – ranking 2026">
+<meta property="og:description" content="Sammenlagtstillingen, kveld for kveld, 180ere, raske legg og høye utganger. Oppdateres etter hver klubbkveld.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23141310'/%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='%23e3dcc6' stroke-width='9'/%3E%3Ccircle cx='50' cy='50' r='17' fill='%23146b46'/%3E%3Ccircle cx='50' cy='50' r='8' fill='%23a82f24'/%3E%3C/svg%3E">
+<title>Karmøy Darts Ranking</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+/* ---------- tokens: light (bare :root = complete palette) ---------- */
+:root{
+  --ground:#e9e9e3;
+  --surface:#f6f6f2;
+  --raised:#fffffc;
+  --line:#d6d6cd;
+  --line-soft:#e2e2d9;
+  --text:#1b1916;
+  --text-2:#4b4740;
+  --muted:#7b766c;
+  --faint:#a39d92;
+
+  --bull:#a82f24;          /* dartboard double-red — brand accent */
+  --bull-ink:#8e2a20;
+  --bull-wash:#f5e3e0;
+  --wire:#146b46;          /* dartboard green */
+  --wire-ink:#0f5a3a;
+  --wire-wash:#dfeee6;
+  --brass:#8f6c11;         /* wire brass — first place only */
+  --brass-wash:#f3ead1;
+
+  --board-black:#1b1916;
+  --board-cream:#e3dcc6;
+
+  --shadow:0 1px 2px rgba(27,25,22,.06), 0 8px 24px -14px rgba(27,25,22,.22);
+  --radius:10px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#121110;
+    --surface:#1a1917;
+    --raised:#211f1c;
+    --line:#302d29;
+    --line-soft:#26241f;
+    --text:#ece8df;
+    --text-2:#c3bdb1;
+    --muted:#8d8779;
+    --faint:#6a6459;
+
+    --bull:#d1483a;
+    --bull-ink:#e26354;
+    --bull-wash:#2a1613;
+    --wire:#38a473;
+    --wire-ink:#4cbb88;
+    --wire-wash:#0f2419;
+    --brass:#d6ac41;
+    --brass-wash:#2b2214;
+
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#121110;
+  --surface:#1a1917;
+  --raised:#211f1c;
+  --line:#302d29;
+  --line-soft:#26241f;
+  --text:#ece8df;
+  --text-2:#c3bdb1;
+  --muted:#8d8779;
+  --faint:#6a6459;
+  --bull:#d1483a;
+  --bull-ink:#e26354;
+  --bull-wash:#2a1613;
+  --wire:#38a473;
+  --wire-ink:#4cbb88;
+  --wire-wash:#0f2419;
+  --brass:#d6ac41;
+  --brass-wash:#2b2214;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -16px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--ground);color:var(--text);
+  font-family:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size:15px;line-height:1.5;-webkit-text-size-adjust:100%;
+}
+.wrap{max-width:1040px;margin:0 auto;padding:28px 20px 64px}
+
+h1,h2,h3,.disp{font-family:'Barlow Condensed','Archivo Narrow',system-ui,sans-serif;font-weight:600;margin:0;text-wrap:balance}
+.num{font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.eyebrow{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+/* ---------- header ---------- */
+.top{display:flex;align-items:center;gap:16px;padding-bottom:18px;border-bottom:2px solid var(--text);flex-wrap:wrap}
+#mark{width:52px;height:52px;flex:0 0 auto;display:block}
+.top-id{flex:1 1 260px;min-width:0}
+.top-id h1{font-size:32px;line-height:.95;letter-spacing:-.005em;text-transform:uppercase}
+.top-id h1 em{font-style:normal;color:var(--bull)}
+.top-meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:5px}
+.theme-btn{margin-left:auto;flex:0 0 auto;background:none;border:1px solid var(--line);color:var(--muted);
+  border-radius:99px;padding:6px 13px;font:inherit;font-size:12px;font-weight:600;cursor:pointer}
+.theme-btn:hover{color:var(--text);border-color:var(--text-2)}
+
+.tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;
+  padding:2px 8px;border-radius:4px;background:var(--surface);border:1px solid var(--line);color:var(--muted)}
+.tag.hot{background:var(--bull-wash);border-color:transparent;color:var(--bull-ink)}
+
+/* ---------- nav ---------- */
+nav{display:flex;gap:2px;margin:0 0 22px;overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{
+  background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;
+  font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;
+  color:var(--muted);padding:10px 14px;cursor:pointer;white-space:nowrap
+}
+nav button:hover{color:var(--text)}
+nav button[aria-selected="true"]{color:var(--text);border-bottom-color:var(--bull)}
+nav button:focus-visible,.theme-btn:focus-visible,.rowbtn:focus-visible,input:focus-visible,.chipbtn:focus-visible{
+  outline:2px solid var(--bull);outline-offset:2px}
+
+/* ---------- stat strip ---------- */
+.strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-bottom:20px}
+.strip>div{background:var(--surface);padding:12px 14px;min-width:0}
+.strip .k{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.strip .v{font-family:'Barlow Condensed',sans-serif;font-size:27px;font-weight:600;line-height:1.05;margin-top:3px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.strip .s{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ---------- generic blocks ---------- */
+.block{margin-bottom:26px}
+.block>h2{font-size:20px;text-transform:uppercase;letter-spacing:.02em;display:flex;align-items:baseline;gap:10px}
+.block>h2 span{font-family:'Archivo',sans-serif;font-size:12px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)}
+.hint{font-size:13px;color:var(--muted);margin:4px 0 12px}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.panel-pad{padding:16px}
+
+input.q{width:100%;max-width:340px;padding:9px 12px;border:1px solid var(--line);border-radius:8px;
+  background:var(--raised);color:var(--text);font:inherit;font-size:14px;margin-bottom:12px}
+input.q::placeholder{color:var(--faint)}
+
+/* ---------- leaderboard ---------- */
+.board{display:flex;flex-direction:column}
+.rowbtn{display:grid;grid-template-columns:38px 1fr auto;gap:12px;align-items:center;width:100%;text-align:left;
+  background:none;border:none;border-bottom:1px solid var(--line-soft);border-radius:0;padding:11px 6px;
+  font:inherit;color:var(--text);cursor:pointer}
+.rowbtn:hover{background:var(--surface)}
+.rowbtn.podium{background:var(--raised);box-shadow:var(--shadow);border:1px solid var(--line);
+  border-radius:var(--radius);padding:12px 13px;margin-bottom:6px}
+.rowbtn.p4{margin-top:8px}
+.rowbtn.p1{border-left:3px solid var(--brass)}
+.rowbtn.p2{border-left:3px solid var(--faint)}
+.rowbtn.p3{border-left:3px solid var(--bull)}
+.pos{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:var(--faint);text-align:center;line-height:1}
+.p1 .pos{color:var(--brass)}.p2 .pos{color:var(--text-2)}.p3 .pos{color:var(--bull)}
+.who{min-width:0}
+.nm{font-weight:600;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.podium .nm{font-size:17px}
+.sub{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin-top:4px}
+.mini{font-size:11px;color:var(--muted);font-weight:500}
+.badge{font-size:11px;font-weight:600;padding:1px 7px;border-radius:4px;letter-spacing:.02em}
+.b180{background:var(--bull-wash);color:var(--bull-ink)}
+.brl{background:var(--wire-wash);color:var(--wire-ink)}
+.but{background:var(--brass-wash);color:var(--brass)}
+.score{text-align:right}
+.score .pts{display:block;font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:700;line-height:.9;font-variant-numeric:tabular-nums}
+.score .lbl{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.form{display:flex;gap:3px;justify-content:flex-end;margin-top:5px}
+.fpip{width:20px;height:16px;border-radius:3px;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;
+  display:flex;align-items:center;justify-content:center;background:var(--line-soft);color:var(--muted);border:1px solid var(--line)}
+.fpip.w{background:var(--brass-wash);color:var(--brass);border-color:transparent}
+.fpip.t{background:var(--wire-wash);color:var(--wire-ink);border-color:transparent}
+
+/* expanded detail */
+.detail{border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--raised);padding:14px;margin:2px 0 10px;display:grid;gap:14px;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.dcol h4{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);margin:0 0 7px}
+.kv{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:3px 0;border-bottom:1px dotted var(--line)}
+.kv:last-child{border-bottom:none}
+.kv b{font-family:'IBM Plex Mono',monospace;font-weight:500;font-variant-numeric:tabular-nums}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chip{font-family:'IBM Plex Mono',monospace;font-size:12px;padding:2px 7px;border-radius:4px;
+  background:var(--surface);border:1px solid var(--line);color:var(--text-2)}
+.chip.hi{background:var(--bull-wash);border-color:transparent;color:var(--bull-ink);font-weight:500}
+.empty{font-size:13px;color:var(--faint)}
+
+/* ---------- bar list ---------- */
+.bars{display:flex;flex-direction:column;gap:7px}
+.bar{display:grid;grid-template-columns:minmax(88px,178px) 1fr 46px;gap:10px;align-items:center;font-size:13px}
+.bar .bn{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text-2)}
+.bar .track{height:12px;background:var(--line-soft);border-radius:3px;overflow:hidden}
+.bar .fill{height:100%;border-radius:3px;background:var(--bull)}
+.bar .fill.g{background:var(--wire)}
+.bar .bv{font-family:'IBM Plex Mono',monospace;font-size:13px;text-align:right;font-variant-numeric:tabular-nums}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:520px}
+th{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--muted);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid var(--line-soft);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+th.r,td.r{text-align:right}
+td.name{font-weight:500;white-space:nowrap;max-width:200px;overflow:hidden;text-overflow:ellipsis}
+td.mono,th.mono{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums}
+.hm{text-align:center;font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums}
+.hm.z{color:var(--faint)}
+
+/* ---------- nights ---------- */
+.nights{display:flex;flex-direction:column;gap:10px}
+.night{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.night>header{display:flex;align-items:baseline;gap:10px;padding:11px 14px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.night h3{font-size:19px;text-transform:uppercase;letter-spacing:.02em}
+.night header .m{font-size:12px;color:var(--muted);margin-left:auto}
+.res{display:flex;flex-direction:column}
+.res-row{display:grid;grid-template-columns:26px 1fr auto;gap:10px;align-items:center;padding:7px 14px;font-size:14px}
+.res-row+.res-row{border-top:1px solid var(--line-soft)}
+.res-row .rp{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);text-align:right}
+.res-row.win .rp{color:var(--brass);font-weight:500}
+.res-row .rn{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.res-row.win .rn{font-weight:600}
+.res-row .rr{display:flex;gap:5px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.gain{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;padding:1px 6px;border-radius:4px;
+  background:var(--line-soft);color:var(--text-2)}
+.gain.g15{background:var(--brass-wash);color:var(--brass)}
+.gain.g12{background:var(--bull-wash);color:var(--bull-ink)}
+.gain.g9{background:var(--wire-wash);color:var(--wire-ink)}
+
+/* ---------- ladder ---------- */
+.ladder{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.rung{background:var(--surface);padding:12px 14px}
+.rung .pl{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.rung .pv{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;line-height:1.05}
+.rung.a .pv{color:var(--brass)}.rung.b .pv{color:var(--bull)}.rung.c .pv{color:var(--wire)}
+
+footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;color:var(--faint)}
+
+@media (max-width:640px){
+  .wrap{padding:20px 14px 48px}
+  .top-id h1{font-size:26px}
+  .strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rowbtn{grid-template-columns:30px 1fr auto;gap:9px;padding:10px}
+  .score .pts{font-size:25px}
+  .bar{grid-template-columns:minmax(70px,110px) 1fr 38px}
+  .detail{margin-top:-7px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="top">
+    <svg id="mark" viewBox="0 0 100 100" role="img" aria-label="Dartskive"></svg>
+    <div class="top-id">
+      <h1>Karmøy <em>Darts</em> Club</h1>
+      <div class="top-meta" id="topmeta"></div>
+    </div>
+    <button class="theme-btn" id="themebtn" type="button">Bytt tema</button>
+  </header>
+
+  <nav id="tabs" role="tablist"></nav>
+
+  <div id="views"></div>
+
+  <footer>
+    Klubbranking for Karmøy Darts Club · sesong 2026 · 501 double out.
+    Poeng etter plassering hver klubbkveld: 15 / 12 / 9 / 6 / 3.
+    <span id="updated"></span>
+  </footer>
+</div>
+
+<script>
+/* =========================================================================
+   DATA
+   BASE = akkumulerte tall fra sesongstart, før kveldsloggen under.
+   NIGHTS = én post per klubbkveld. Legg til ny kveld nederst i NIGHTS,
+   så regnes poeng, oppmøte, 180ere, raske legg og utganger ut automatisk.
+   raske legg r:[13,14,15,16,17,18,19,20,21] = antall legg fullført på så mange piler.
+   ========================================================================= */
+
+const BASE=[
+  {id:1,n:"Kristoffer Nordbø",p:177,a:13,w:8,m:13,r:[0,0,1,4,8,5,10,9,12],co:[145,113,113,108,106]},
+  {id:2,n:"Frank Cassidy",p:132,a:11,w:4,m:3,r:[0,1,2,2,7,3,5,7,7],co:[126,120,118,108,104]},
+  {id:3,n:"Kjartan Vestre",p:111,a:13,w:1,m:4,r:[0,0,0,0,1,1,4,3,6],co:[]},
+  {id:4,n:"Birger Hervik",p:90,a:13,w:1,m:5,r:[0,0,0,0,0,0,0,1,2],co:[116]},
+  {id:5,n:"Sindre Høines",p:90,a:12,w:0,m:3,r:[0,0,0,1,0,1,0,1,1],co:[112,104]},
+  {id:6,n:"Glenn Hansen",p:78,a:14,w:0,m:1,r:[0,0,0,0,0,1,0,1,5],co:[]},
+  {id:7,n:"Petter Austevik",p:60,a:11,w:1,m:0,r:[0,0,0,0,0,0,0,0,1],co:[]},
+  {id:8,n:"Hans-Fredrik Magnussen",p:48,a:7,w:0,m:1,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:9,n:"Harald Veland",p:48,a:5,w:1,m:4,r:[0,1,1,2,1,0,1,3,2],co:[131,101]},
+  {id:10,n:"Harald Gerhard Veland",p:39,a:9,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:11,n:"Mette Nilsen",p:33,a:8,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[128]},
+  {id:12,n:"Marius Søvik",p:33,a:9,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[120]},
+  {id:13,n:"Arve Kyvik",p:33,a:4,w:1,m:4,r:[0,0,0,0,1,2,1,1,2],co:[]},
+  {id:14,n:"Morten Solstrand",p:18,a:3,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:15,n:"Henry Chau",p:15,a:3,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:16,n:"Ivan Riquelme Sanchez",p:12,a:2,w:0,m:2,r:[0,0,0,0,0,0,1,1,0],co:[]},
+  {id:17,n:"Filip Gyde",p:12,a:3,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:18,n:"Raymond Mortensen",p:9,a:2,w:0,m:0,r:[0,0,0,0,1,0,0,0,0],co:[]},
+  {id:19,n:"Frank Steinsland",p:9,a:1,w:0,m:1,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:20,n:"Pål Skauvik",p:6,a:1,w:0,m:1,r:[0,0,0,0,0,0,0,0,0],co:[117]},
+  {id:21,n:"Lars Askeland",p:6,a:2,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:22,n:"Alex",p:6,a:1,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:23,n:"Cato Henriksen",p:6,a:2,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:24,n:"Rune Vøien",p:6,a:2,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:25,n:"Dagfinn Tyse",p:3,a:1,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:26,n:"Steffen Hammersland",p:3,a:1,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:27,n:"Svend Atle Høie",p:3,a:1,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:28,n:"Luke Sevland-Evans",p:3,a:1,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:29,n:"Barrie Williamson",p:3,a:1,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:30,n:"Sigbjørn",p:3,a:1,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:31,n:"Erlend",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:32,n:"Frode Olsen",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:33,n:"Geir Atle Lye Bårdsen",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:34,n:"Eirik Høyland",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:35,n:"Gunnar Laurhammer",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:36,n:"Jostein Lunde",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:37,n:"Leiv Magne Haukås",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:38,n:"Steinar Barane",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:39,n:"Jan Eirik Nordseth",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:40,n:"Anders Neerland",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:41,n:"Mathias Tjoland",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:42,n:"Leif Abrahamsen",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:43,n:"Sunniva Nyhamn",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:44,n:"Geir Håland",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
+  {id:45,n:"Hedda Klakegg",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]}
+];
+
+const NIGHTS=[
+  {week:"Uke 16 – 18. april 2026",date:"2026-04-18",res:[
+    {id:3,pos:1,r:[0,0,0,1,0,0,0,1,0]},
+    {id:6,pos:2,r:[0,0,0,0,0,0,0,0,1]},
+    {id:5,pos:3},
+    {id:16,pos:4},
+    {id:12,pos:5},
+    {id:10,pos:6},
+    {id:4,pos:7}
+  ]},
+  {week:"Uke 17 – 23. april 2026",date:"2026-04-23",res:[
+    {id:9,pos:1,m:1,co:[104],r:[0,0,0,1,2,1,0,2,1]},
+    {id:2,pos:2,m:1,r:[0,0,0,0,1,0,0,0,1]},
+    {id:3,pos:3,co:[103],r:[0,0,0,0,0,1,0,0,1]},
+    {id:13,pos:4,m:2,co:[120],r:[0,0,0,0,1,1,1,1,0]},
+    {id:19,pos:5,r:[0,0,0,0,1,0,0,1,0]},
+    {id:5,pos:6,co:[125]},
+    {id:4,pos:7},
+    {id:11,pos:8},
+    {id:6,pos:9,r:[0,0,0,0,0,0,0,1,1]},
+    {id:10,pos:10},
+    {id:12,pos:11},
+    {id:26,pos:12}
+  ]},
+  {week:"Uke 18 – 30. april 2026",date:"2026-04-30",res:[
+    {id:16,pos:1,m:1,co:[104],r:[0,1,0,0,1,1,1,1,0]},
+    {id:5,pos:2,r:[0,0,0,0,0,0,1,0,0]},
+    {id:3,pos:3,r:[0,0,0,0,0,0,1,2,0]},
+    {id:6,pos:4,r:[0,0,0,0,0,0,0,0,1]},
+    {id:28,pos:5},
+    {id:8,pos:6,m:1},
+    {id:18,pos:7},
+    {id:12,pos:8},
+    {id:10,pos:9},
+    {id:31,pos:10},
+    {id:11,pos:11}
+  ]},
+  {week:"Uke 19 – 7. mai 2026",date:"2026-05-07",res:[
+    {id:3,pos:1,m:3,co:[139],r:[0,0,0,1,0,1,0,0,2]},
+    {id:16,pos:2,m:1,r:[0,0,0,0,0,0,2,0,0]},
+    {id:5,pos:3},
+    {id:18,pos:4},
+    {id:8,pos:5,m:1},
+    {id:6,pos:6,r:[0,0,0,0,0,0,0,0,2]},
+    {id:7,pos:7,r:[0,0,0,0,0,0,0,1,0]},
+    {id:4,pos:8},
+    {id:12,pos:9},
+    {id:11,pos:10},
+    {id:10,pos:11}
+  ]},
+  {week:"Uke 20 – 14. mai 2026",date:"2026-05-14",res:[
+    {id:9,pos:1,r:[0,0,0,0,1,1,1,2,0]},
+    {id:16,pos:2,m:1,co:[140],r:[0,0,0,0,1,0,0,0,1]},
+    {id:32,pos:3},
+    {id:6,pos:4,r:[0,0,0,0,0,0,1,0,3]},
+    {id:1,pos:5,m:1,r:[0,0,0,0,1,0,0,0,0]},
+    {id:5,pos:6,r:[0,0,0,0,0,0,0,0,1]},
+    {id:33,pos:7},
+    {id:34,pos:8},
+    {id:35,pos:9},
+    {id:36,pos:10},
+    {id:4,pos:11},
+    {id:18,pos:12},
+    {id:10,pos:13},
+    {id:12,pos:14},
+    {id:8,pos:15},
+    {id:14,pos:16},
+    {id:37,pos:17}
+  ]},
+  {week:"Uke 21 – 21. mai 2026",date:"2026-05-21",res:[
+    {id:18,pos:1,m:1,co:[104],r:[0,0,0,0,0,0,1,0,0]},
+    {id:3,pos:2,m:2,r:[0,0,0,0,0,0,1,0,0]},
+    {id:16,pos:3,m:1,r:[0,0,0,0,0,0,0,1,0]},
+    {id:4,pos:4,co:[131]},
+    {id:5,pos:5,r:[0,0,0,0,0,0,0,0,1]},
+    {id:12,pos:6},
+    {id:6,pos:7,r:[0,0,0,0,0,0,0,0,1]},
+    {id:10,pos:8,m:1},
+    {id:7,pos:9},
+    {id:11,pos:10}
+  ]},
+  {week:"Uke 22 – 28. mai 2026",date:"2026-05-28",res:[
+    {id:13,pos:1},
+    {id:3,pos:2,m:1,r:[0,0,0,0,0,0,1,2,1]},
+    {id:38,pos:3,co:[107]},
+    {id:4,pos:4,m:1,co:[112],r:[0,0,1,0,0,0,0,0,0]},
+    {id:11,pos:5},
+    {id:10,pos:6},
+    {id:6,pos:7,r:[0,0,0,0,0,0,0,0,1]},
+    {id:5,pos:8},
+    {id:12,pos:9}
+  ]},
+  {week:"Uke 23 – 4. juni 2026",date:"2026-06-04",res:[
+    {id:39,pos:1,m:1,co:[112,140],r:[0,0,1,1,1,3,1,0,1]},
+    {id:19,pos:2,m:3,co:[131],r:[0,0,0,0,0,1,0,1,0]},
+    {id:3,pos:3,m:1,co:[154],r:[0,0,0,0,1,0,0,0,0]},
+    {id:1,pos:4,m:2},
+    {id:11,pos:5},
+    {id:14,pos:6,co:[108,117],r:[0,0,0,0,0,0,0,0,1]},
+    {id:4,pos:7},
+    {id:5,pos:8},
+    {id:7,pos:9},
+    {id:10,pos:10},
+    {id:40,pos:11}
+  ]},
+  {week:"Uke 24 – 11. juni 2026",date:"2026-06-11",res:[
+    {id:1,pos:1,co:[157],r:[0,0,0,0,0,0,0,1,1]},
+    {id:3,pos:2,co:[141],r:[0,0,1,0,0,1,2,1,1]},
+    {id:8,pos:3,r:[0,0,0,0,0,0,1,0,0]},
+    {id:7,pos:4},
+    {id:6,pos:5,co:[116]},
+    {id:10,pos:6},
+    {id:5,pos:7},
+    {id:4,pos:8}
+  ]},
+  {week:"Uke 25 – 18. juni 2026",date:"2026-06-18",res:[
+    {id:1,pos:1,co:[118],r:[0,0,0,0,0,0,0,0,2]},
+    {id:9,pos:2,r:[0,0,0,0,0,0,0,1,0]},
+    {id:8,pos:3},
+    {id:5,pos:4,co:[120]},
+    {id:11,pos:5},
+    {id:6,pos:6},
+    {id:10,pos:7},
+    {id:12,pos:8},
+    {id:3,pos:9},
+    {id:4,pos:10,m:1}
+  ]},
+  {week:"Kveld 11",final:"Frank Cassidy – Kjartan Vestre 4–3",res:[
+    {id:2,pos:1,r:[0,0,0,0,0,1,1,0,0]},
+    {id:3,pos:2,m:2,r:[0,0,0,1,0,2,1,0,0]},
+    {id:16,pos:3,r:[0,0,0,0,0,0,1,0,0]},
+    {id:4,pos:4},
+    {id:8,pos:5},
+    {id:10,pos:6},
+    {id:19,pos:7,m:1,r:[0,0,0,0,0,0,1,0,1]},
+    {id:12,pos:8},
+    {id:11,pos:9}
+  ]},
+  {week:"Kveld 12",final:"Kjartan Vestre – Frank Steinsland 4–2",res:[
+    {id:3,pos:1,m:1,r:[0,0,0,0,0,0,0,2,0]},
+    {id:19,pos:2,m:1,r:[0,0,0,0,0,0,2,0,0]},
+    {id:4,pos:3},
+    {id:2,pos:4,m:1,r:[0,0,0,0,0,0,1,1,0]},
+    {id:8,pos:5},
+    {id:5,pos:6},
+    {id:11,pos:7},
+    {id:6,pos:8,r:[0,0,0,0,0,0,0,0,1]},
+    {id:10,pos:9,co:[113]}
+  ]},
+  {week:"Kveld 13",final:"Kristoffer Nordbø – Arve Kyvik 4–2",res:[
+    {id:1,pos:1,m:1,co:[150],r:[0,0,0,1,0,1,0,1,2]},
+    {id:13,pos:2,r:[0,0,0,0,0,0,0,1,2]},
+    {id:6,pos:3,r:[0,0,0,0,0,0,0,1,0]},
+    {id:3,pos:4,r:[0,0,0,0,0,0,0,2,0]},
+    {id:19,pos:5,m:1},
+    {id:14,pos:6},
+    {id:42,pos:7,m:1},
+    {id:8,pos:8,r:[0,0,0,0,0,0,1,0,1]},
+    {id:43,pos:9},
+    {id:7,pos:10,r:[0,0,0,0,0,0,0,0,1]},
+    {id:11,pos:11},
+    {id:44,pos:12,co:[149,116]},
+    {id:5,pos:13},
+    {id:4,pos:14},
+    {id:12,pos:15},
+    {id:45,pos:16}
+  ]},
+  {week:"Kveld 14",final:"Kristoffer Nordbø – Harald Veland 4–1",res:[
+    {id:1,pos:1,m:1,r:[0,0,0,1,1,1,0,2,0]},
+    {id:9,pos:2,m:1,r:[0,0,0,0,1,0,1,0,0]},
+    {id:41,pos:3,co:[101],r:[0,0,0,1,0,0,0,0,2]},
+    {id:4,pos:4},
+    {id:5,pos:5},
+    {id:11,pos:6},
+    {id:6,pos:7,co:[138],r:[0,0,0,0,0,0,0,0,1]},
+    {id:3,pos:8,m:1}
+  ]},
+  {week:"Kveld 15",final:"Kjartan Vestre – Hans-Fredrik Magnussen 4–2",res:[
+    {id:3,pos:1,co:[115],r:[0,0,0,1,0,0,1,0,4]},
+    {id:8,pos:2,r:[0,0,0,0,0,0,0,0,1]},
+    {id:41,pos:3,m:1,co:[110,108]},
+    {id:1,pos:4,r:[0,0,0,0,1,0,1,0,0]},
+    {id:5,pos:5},
+    {id:6,pos:6,r:[0,0,0,0,0,0,0,0,1]},
+    {id:4,pos:7,co:[126]},
+    {id:12,pos:8},
+    {id:7,pos:9,note:"Vinner av B-finalen"},
+    {id:10,pos:10},
+    {id:11,pos:11}
+  ]},
+  {week:"Kveld 16",res:[
+    {id:3,pos:1,co:[113],r:[0,0,0,0,1,0,1,3,0]},
+    {id:6,pos:2,r:[0,0,0,0,0,0,0,0,2]},
+    {id:4,pos:3,m:1,r:[0,0,0,0,0,0,0,1,0]},
+    {id:11,pos:4},
+    {id:7,pos:5,r:[0,0,0,0,0,0,0,1,1]},
+    {id:5,pos:6,m:1}
+  ]}
+];
+
+/* Dato som vises nederst på siden – oppdater sammen med ny kveld. */
+const UPDATED="10. september 2026";
+
+/* ---------- poengstige ---------- */
+const LADDER=[
+  {t:"1. plass",v:15,c:"a"},
+  {t:"2. plass",v:12,c:"b"},
+  {t:"3.–4. plass",v:9,c:"c"},
+  {t:"5.–8. plass",v:6,c:""},
+  {t:"9. plass og lavere",v:3,c:""}
+];
+const points=pos=>pos===1?15:pos===2?12:pos<=4?9:pos<=8?6:3;
+
+/* ---------- derived state ---------- */
+const DARTS=[13,14,15,16,17,18,19,20,21];
+const CO_BANDS=[
+  {t:"101–120",lo:101,hi:120},
+  {t:"121–140",lo:121,hi:140},
+  {t:"141–160",lo:141,hi:160},
+  {t:"161–167",lo:161,hi:167},
+  {t:"170",lo:168,hi:180}
+];
+
+const P={};
+BASE.forEach(b=>{
+  P[b.id]={id:b.id,name:b.n,pts:b.p,att:b.a,wins:b.w,max:b.m,
+    raske:b.r.slice(),co:b.co.slice(),nights:[]};
+});
+NIGHTS.forEach((night,ni)=>{
+  night.res.forEach(r=>{
+    const p=P[r.id]; if(!p) return;
+    const g=points(r.pos);
+    p.pts+=g; p.att++; if(r.pos===1)p.wins++;
+    p.max+=r.m||0;
+    if(r.r) r.r.forEach((v,i)=>p.raske[i]+=v);
+    if(r.co) r.co.forEach(v=>p.co.push(v));
+    p.nights.push({ni,week:night.week,pos:r.pos,gain:g,field:night.res.length,
+      max:r.m||0,co:r.co||[],raske:r.r||null});
+  });
+});
+const ALL=Object.values(P);
+ALL.forEach(p=>{
+  p.rl=p.raske.reduce((a,v)=>a+v,0);
+  p.co.sort((a,b)=>b-a);
+  p.best=p.co.length?p.co[0]:0;
+  p.avg=p.att?p.pts/p.att:0;
+  p.bestLeg=p.raske.findIndex(v=>v>0);
+  p.bestLeg=p.bestLeg<0?null:DARTS[p.bestLeg];
+});
+const RANKED=[...ALL].sort((a,b)=>b.pts-a.pts||b.wins-a.wins||b.max-a.max||a.name.localeCompare(b.name,'nb'));
+RANKED.forEach((p,i)=>p.rank=i+1);
+
+const T={
+  players:ALL.length,
+  nights:NIGHTS.length,
+  max:ALL.reduce((a,p)=>a+p.max,0),
+  rl:ALL.reduce((a,p)=>a+p.rl,0),
+  co:ALL.reduce((a,p)=>a+p.co.length,0),
+  att:ALL.reduce((a,p)=>a+p.att,0)
+};
+T.bestCo=ALL.filter(p=>p.best).sort((a,b)=>b.best-a.best)[0]||null;
+T.leader=RANKED[0];
+
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const first=n=>n.split(' ')[0];
+const one=n=>Number(n).toFixed(1).replace('.',',');
+
+/* ---------- dartboard mark ---------- */
+(function(){
+  const order=[20,1,18,4,13,6,10,15,2,17,3,19,7,16,8,11,14,9,12,5];
+  const cx=50,cy=50,step=Math.PI*2/20;
+  const arc=(r0,r1,a0,a1)=>{
+    const pt=(r,a)=>[(cx+r*Math.sin(a)).toFixed(2),(cy-r*Math.cos(a)).toFixed(2)];
+    const [x1,y1]=pt(r1,a0),[x2,y2]=pt(r1,a1),[x3,y3]=pt(r0,a1),[x4,y4]=pt(r0,a0);
+    return `M${x1} ${y1}A${r1} ${r1} 0 0 1 ${x2} ${y2}L${x3} ${y3}A${r0} ${r0} 0 0 0 ${x4} ${y4}Z`;
+  };
+  let s='<circle cx="50" cy="50" r="49" fill="#141310"/>';
+  for(let i=0;i<20;i++){
+    const a0=(i-0.5)*step,a1=(i+0.5)*step,even=i%2===0;
+    const bed=even?'#e3dcc6':'#1b1916';
+    const wire=even?'#146b46':'#a82f24';
+    s+=`<path d="${arc(9,42,a0,a1)}" fill="${bed}"/>`;
+    s+=`<path d="${arc(25,28.5,a0,a1)}" fill="${wire}"/>`;
+    s+=`<path d="${arc(42,46,a0,a1)}" fill="${wire}"/>`;
+  }
+  s+='<circle cx="50" cy="50" r="9" fill="#146b46"/><circle cx="50" cy="50" r="4" fill="#a82f24"/>';
+  s+='<circle cx="50" cy="50" r="47.5" fill="none" stroke="#8a8272" stroke-width="1.4"/>';
+  document.getElementById('mark').innerHTML=s;
+  document.getElementById('mark').dataset.order=order.join(',');
+})();
+
+document.getElementById('updated').textContent=`Sist oppdatert ${UPDATED}.`;
+
+/* ---------- header meta ---------- */
+document.getElementById('topmeta').innerHTML=
+  `<span class="tag">Sesong 2026</span>`+
+  `<span class="tag">${T.nights} kvelder logget</span>`+
+  `<span class="tag hot">Leder: ${esc(T.leader.name)} · ${T.leader.pts} p</span>`;
+
+/* ---------- views ---------- */
+const VIEWS=[
+  {id:'rank',label:'Ranking',render:vRank},
+  {id:'nights',label:'Kvelder',render:vNights},
+  {id:'legs',label:'180 & raske legg',render:vLegs},
+  {id:'co',label:'Utganger',render:vCo},
+  {id:'avg',label:'Snitt per kveld',render:vAvg}
+];
+
+function strip(items){
+  return `<div class="strip">${items.map(i=>
+    `<div><div class="k">${i.k}</div><div class="v">${i.v}</div>${i.s?`<div class="s">${i.s}</div>`:''}</div>`
+  ).join('')}</div>`;
+}
+function barList(rows,max,cls){
+  if(!rows.length) return `<p class="empty">Ingen tall registrert ennå.</p>`;
+  return `<div class="bars">${rows.map(r=>`
+    <div class="bar"><div class="bn">${esc(r.n)}</div>
+      <div class="track"><div class="fill${cls?' '+cls:''}" style="width:${Math.max(2,r.v/max*100)}%"></div></div>
+      <div class="bv">${r.v}</div></div>`).join('')}</div>`;
+}
+function ladderBlock(){
+  return `<div class="block"><h2>Poengsystem <span>samme stige hver klubbkveld</span></h2>
+    <div class="ladder">${LADDER.map(l=>
+      `<div class="rung ${l.c}"><div class="pl">${l.t}</div><div class="pv">${l.v} p</div></div>`).join('')}</div></div>`;
+}
+
+/* ----- Ranking ----- */
+let openId=null, query='';
+function vRank(){
+  return strip([
+    {k:'Leder',v:esc(first(T.leader.name)),s:`${T.leader.pts} poeng · ${T.leader.wins} seire`},
+    {k:'Spillere',v:T.players,s:`${T.att} oppmøter til sammen`},
+    {k:'180ere',v:T.max,s:`${T.rl} raske legg`},
+    {k:'Høyeste utgang',v:T.bestCo?T.bestCo.best:'–',s:T.bestCo?esc(T.bestCo.name):''}
+  ])+
+  `<div class="block"><h2>Sammenlagt <span>trykk på en spiller for detaljer</span></h2>
+    <input class="q" id="q" type="search" placeholder="Søk spiller…" value="${esc(query)}" autocomplete="off">
+    <div class="board" id="board">${boardRows()}</div></div>`+
+  ladderBlock();
+}
+function boardRows(){
+  const q=query.trim().toLowerCase();
+  const list=RANKED.filter(p=>!q||p.name.toLowerCase().includes(q));
+  if(!list.length) return `<p class="empty">Ingen spillere matcher «${esc(query)}».</p>`;
+  return list.map(p=>{
+    const pod=p.rank<=3?` podium p${p.rank}`:(p.rank===4?' p4':'');
+    const form=p.nights.slice(-6).map(n=>
+      `<span class="fpip ${n.pos===1?'w':n.pos<=4?'t':''}" title="${esc(n.week)}: ${n.pos}. plass">${n.pos}</span>`).join('');
+    return `<button class="rowbtn${pod}" type="button" data-id="${p.id}" aria-expanded="${openId===p.id}">
+      <span class="pos">${p.rank}</span>
+      <span class="who">
+        <span class="nm">${esc(p.name)}</span>
+        <span class="sub">
+          <span class="mini">${p.att} kveld${p.att===1?'':'er'} · ${one(p.avg)} p/kveld</span>
+          ${p.wins?`<span class="badge but">${p.wins}× vinner</span>`:''}
+          ${p.max?`<span class="badge b180">${p.max}× 180</span>`:''}
+          ${p.rl?`<span class="badge brl">${p.rl} raske legg</span>`:''}
+        </span>
+      </span>
+      <span class="score"><span class="pts">${p.pts}</span><span class="lbl">poeng</span>
+        <span class="form">${form}</span></span>
+    </button>`+(openId===p.id?detail(p):'');
+  }).join('');
+}
+function detail(p){
+  const rk=p.raske.map((v,i)=>v?`<span class="chip${DARTS[i]<=16?' hi':''}">${DARTS[i]} piler ×${v}</span>`:'').join('');
+  const co=p.co.length?p.co.map(v=>`<span class="chip${v>=141?' hi':''}">${v}</span>`).join(''):'<span class="empty">Ingen over 100 ennå.</span>';
+  const hist=p.nights.slice().reverse().slice(0,8).map(n=>
+    `<div class="kv"><span>${esc(n.week.split(' – ')[0])}</span><b>${n.pos}. → +${n.gain}</b></div>`).join('')
+    ||'<span class="empty">Ingen kvelder i loggen.</span>';
+  return `<div class="detail">
+    <div class="dcol"><h4>Sesongen</h4>
+      <div class="kv"><span>Poeng</span><b>${p.pts}</b></div>
+      <div class="kv"><span>Kvelder</span><b>${p.att}</b></div>
+      <div class="kv"><span>Snitt per kveld</span><b>${one(p.avg)}</b></div>
+      <div class="kv"><span>Kveldsseire</span><b>${p.wins}</b></div>
+      <div class="kv"><span>180ere</span><b>${p.max}</b></div>
+      <div class="kv"><span>Beste leg</span><b>${p.bestLeg?p.bestLeg+' piler':'–'}</b></div>
+    </div>
+    <div class="dcol"><h4>Raske legg</h4>
+      ${rk?`<div class="chips">${rk}</div>`:'<span class="empty">Ingen registrert.</span>'}</div>
+    <div class="dcol"><h4>Utganger over 100</h4><div class="chips">${co}</div></div>
+    <div class="dcol"><h4>Siste kvelder</h4>${hist}</div>
+  </div>`;
+}
+
+/* ----- Kvelder ----- */
+function vNights(){
+  const nn=[...NIGHTS].reverse();
+  const busiest=[...NIGHTS].sort((a,b)=>b.res.length-a.res.length)[0];
+  return strip([
+    {k:'Kvelder logget',v:T.nights,s:`snitt ${one(T.att/T.nights)} spillere`},
+    {k:'Størst oppmøte',v:busiest.res.length,s:esc(busiest.week.split(' – ')[0])},
+    {k:'Siste kveld',v:esc(nn[0].week.split(' – ')[0]),s:`${nn[0].res.length} spillere`},
+    {k:'Vinneren sist',v:esc(first(P[nn[0].res.find(r=>r.pos===1).id].name)),s:'15 poeng'}
+  ])+
+  `<div class="block"><h2>Kveld for kveld <span>nyeste øverst</span></h2>
+    <div class="nights">${nn.map(n=>{
+      const m=n.res.reduce((a,r)=>a+(r.m||0),0);
+      const c=n.res.reduce((a,r)=>a+((r.co||[]).length),0);
+      const rl=n.res.reduce((a,r)=>a+((r.r||[]).reduce((x,y)=>x+y,0)),0);
+      const sub=n.week.split(' – ')[1]||'';
+      return `<article class="night">
+        <header><h3>${esc(n.week.split(' – ')[0])}</h3>
+          ${sub?`<span class="tag">${esc(sub)}</span>`:''}
+          ${n.final?`<span class="tag">Finale: ${esc(n.final)}</span>`:''}
+          <span class="m">${n.res.length} spillere${m?` · ${m}× 180`:''}${rl?` · ${rl} raske legg`:''}${c?` · ${c} høye utganger`:''}</span>
+        </header>
+        <div class="res">${n.res.map(r=>{
+          const g=points(r.pos);
+          return `<div class="res-row${r.pos===1?' win':''}">
+            <span class="rp">${r.pos}.</span>
+            <span class="rn">${esc(P[r.id]?P[r.id].name:'Ukjent')}</span>
+            <span class="rr">
+              ${r.note?`<span class="tag">${esc(r.note)}</span>`:''}
+              ${r.m?`<span class="badge b180">${r.m}× 180</span>`:''}
+              ${(r.co||[]).map(v=>`<span class="chip${v>=141?' hi':''}">${v}</span>`).join('')}
+              <span class="gain g${g}">+${g}</span>
+            </span></div>`;
+        }).join('')}</div></article>`;
+    }).join('')}</div></div>`;
+}
+
+/* ----- 180 & raske legg ----- */
+function vLegs(){
+  const m=ALL.filter(p=>p.max).sort((a,b)=>b.max-a.max);
+  const r=ALL.filter(p=>p.rl).sort((a,b)=>b.rl-a.rl);
+  const fastest=ALL.filter(p=>p.bestLeg).sort((a,b)=>a.bestLeg-b.bestLeg)[0];
+  const rows=[...r].sort((a,b)=>{
+    const ai=a.raske.findIndex(v=>v>0),bi=b.raske.findIndex(v=>v>0);
+    return ai-bi||b.rl-a.rl;
+  });
+  const colMax=DARTS.map((_,i)=>Math.max(...ALL.map(p=>p.raske[i])));
+  return strip([
+    {k:'180ere totalt',v:T.max,s:m.length?`${esc(first(m[0].name))} leder med ${m[0].max}`:''},
+    {k:'Raske legg totalt',v:T.rl,s:r.length?`${esc(first(r[0].name))} leder med ${r[0].rl}`:''},
+    {k:'Raskeste leg',v:fastest?fastest.bestLeg+' piler':'–',s:fastest?esc(fastest.name):''},
+    {k:'Spillere med 180',v:m.length,s:`av ${T.players} i klubben`}
+  ])+
+  `<div class="block"><h2>Antall 180ere</h2>
+    ${barList(m.map(p=>({n:p.name,v:p.max})),m.length?m[0].max:1)}</div>
+  <div class="block"><h2>Raske legg <span>legg fullført på 21 piler eller mindre</span></h2>
+    ${barList(r.slice(0,12).map(p=>({n:p.name,v:p.rl})),r.length?r[0].rl:1,'g')}</div>
+  <div class="block"><h2>Pilforbruk <span>antall legg fullført på så mange piler</span></h2>
+    <p class="hint">Sortert etter raskeste leg. Mørkere celle = flere legg på det pileantallet.</p>
+    <div class="panel scroll"><table>
+      <thead><tr><th>Spiller</th>${DARTS.map(d=>`<th class="r mono">${d}</th>`).join('')}<th class="r mono">Sum</th></tr></thead>
+      <tbody>${rows.map(p=>`<tr><td class="name">${esc(p.name)}</td>
+        ${p.raske.map((v,i)=>{
+          const mx=colMax[i]||1;
+          const a=v?(0.14+0.5*(v/mx)).toFixed(2):0;
+          return `<td class="hm${v?'':' z'}" style="${v?`background:color-mix(in srgb, var(--wire) ${Math.round(a*100)}%, transparent)`:''}">${v||'·'}</td>`;
+        }).join('')}
+        <td class="r mono" style="font-weight:600">${p.rl}</td></tr>`).join('')}</tbody>
+    </table></div></div>`;
+}
+
+/* ----- Utganger ----- */
+function vCo(){
+  const all=[];ALL.forEach(p=>p.co.forEach(v=>all.push({v,p})));
+  const bands=CO_BANDS.map(b=>({...b,n:all.filter(x=>x.v>=b.lo&&x.v<=b.hi).length}));
+  const bmax=Math.max(1,...bands.map(b=>b.n));
+  const byP=ALL.filter(p=>p.co.length).sort((a,b)=>b.best-a.best||b.co.length-a.co.length);
+  return strip([
+    {k:'Utganger over 100',v:T.co,s:`${byP.length} spillere har minst én`},
+    {k:'Høyeste',v:T.bestCo?T.bestCo.best:'–',s:T.bestCo?esc(T.bestCo.name):''},
+    {k:'141 og over',v:all.filter(x=>x.v>=141).length,s:'de virkelig store'},
+    {k:'Flest',v:byP.length?byP.sort((a,b)=>b.co.length-a.co.length)[0].co.length:0,
+      s:byP.length?esc(first(byP.sort((a,b)=>b.co.length-a.co.length)[0].name)):''}
+  ])+
+  `<div class="block"><h2>Fordeling</h2>
+    <div class="panel panel-pad"><div class="bars">${bands.map(b=>`
+      <div class="bar"><div class="bn">${b.t}</div>
+        <div class="track"><div class="fill" style="width:${Math.max(2,b.n/bmax*100)}%"></div></div>
+        <div class="bv">${b.n}</div></div>`).join('')}</div></div></div>
+  <div class="block"><h2>Per spiller <span>beste utgang først</span></h2>
+    <div class="panel scroll"><table>
+      <thead><tr><th>Spiller</th><th class="r mono">Beste</th><th class="r mono">Antall</th><th>Alle utganger</th></tr></thead>
+      <tbody>${byP.sort((a,b)=>b.best-a.best).map(p=>`<tr>
+        <td class="name">${esc(p.name)}</td>
+        <td class="r mono" style="font-weight:600">${p.best}</td>
+        <td class="r mono">${p.co.length}</td>
+        <td><span class="chips">${p.co.map(v=>`<span class="chip${v>=141?' hi':''}">${v}</span>`).join('')}</span></td>
+      </tr>`).join('')}</tbody></table></div></div>`;
+}
+
+/* ----- Snitt per kveld ----- */
+const MIN_ATT=5;
+function vAvg(){
+  const q=ALL.filter(p=>p.att>=MIN_ATT).sort((a,b)=>b.avg-a.avg);
+  const rest=ALL.filter(p=>p.att>0&&p.att<MIN_ATT).sort((a,b)=>b.avg-a.avg);
+  const mostAtt=[...ALL].sort((a,b)=>b.att-a.att)[0];
+  return strip([
+    {k:'Beste snitt',v:q.length?one(q[0].avg):'–',s:q.length?`${esc(q[0].name)} · ${q[0].att} kvelder`:''},
+    {k:'Flest oppmøter',v:mostAtt.att,s:esc(mostAtt.name)},
+    {k:'Klubbsnitt',v:one(ALL.reduce((a,p)=>a+p.pts,0)/T.att),s:'poeng per oppmøte'},
+    {k:'Kvalifiserte',v:q.length,s:`minst ${MIN_ATT} kvelder`}
+  ])+
+  `<div class="block"><h2>Snitt per kveld <span>minst ${MIN_ATT} kvelder</span></h2>
+    <p class="hint">Snittet viser hvor høyt en spiller plasserer seg når hen først møter opp. Kravet på ${MIN_ATT} kvelder holder enkeltkvelder fra å toppe lista.</p>
+    ${barList(q.map(p=>({n:p.name,v:Number(p.avg.toFixed(1))})),q.length?q[0].avg:1,'g')}</div>
+  <div class="block"><h2>Full oversikt</h2>
+    <div class="panel scroll"><table>
+      <thead><tr><th class="r mono">#</th><th>Spiller</th><th class="r mono">Kvelder</th><th class="r mono">Poeng</th>
+        <th class="r mono">Snitt</th><th class="r mono">Seire</th></tr></thead>
+      <tbody>${q.concat(rest).map((p,i)=>`<tr>
+        <td class="r mono" style="color:var(--muted)">${i<q.length?i+1:'–'}</td>
+        <td class="name">${esc(p.name)}</td>
+        <td class="r mono">${p.att}</td>
+        <td class="r mono">${p.pts}</td>
+        <td class="r mono" style="font-weight:600;color:${i<q.length?'var(--wire-ink)':'var(--muted)'}">${one(p.avg)}</td>
+        <td class="r mono">${p.wins||'·'}</td></tr>`).join('')}</tbody></table></div>
+    <p class="hint">Spillere med under ${MIN_ATT} kvelder står uten plassnummer.</p></div>`;
+}
+
+/* ---------- shell ---------- */
+let current='rank';
+const tabs=document.getElementById('tabs'), views=document.getElementById('views');
+tabs.innerHTML=VIEWS.map(v=>
+  `<button type="button" role="tab" data-v="${v.id}" aria-selected="${v.id===current}">${v.label}</button>`).join('');
+function draw(){
+  tabs.querySelectorAll('button').forEach(b=>b.setAttribute('aria-selected',b.dataset.v===current));
+  views.innerHTML=VIEWS.find(v=>v.id===current).render();
+}
+tabs.addEventListener('click',e=>{
+  const b=e.target.closest('button[data-v]'); if(!b) return;
+  current=b.dataset.v; draw(); window.scrollTo({top:0,behavior:'smooth'});
+});
+views.addEventListener('click',e=>{
+  const r=e.target.closest('.rowbtn'); if(!r) return;
+  const id=Number(r.dataset.id);
+  openId=openId===id?null:id;
+  document.getElementById('board').innerHTML=boardRows();
+});
+views.addEventListener('input',e=>{
+  if(e.target.id!=='q') return;
+  query=e.target.value; openId=null;
+  document.getElementById('board').innerHTML=boardRows();
+});
+
+/* theme toggle: explicit choice wins over the OS in both directions */
+document.getElementById('themebtn').addEventListener('click',()=>{
+  const root=document.documentElement;
+  const dark=root.getAttribute('data-theme')==='dark' ||
+    (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  root.setAttribute('data-theme',dark?'light':'dark');
+  try{localStorage.setItem('kdc-theme',dark?'light':'dark');}catch(e){}
+});
+try{const t=localStorage.getItem('kdc-theme'); if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}
+
+draw();
+</script>
+
+</body>
+</html>
