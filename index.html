@@ -980,17 +980,36 @@ function groupChoices(n){
   return out.length?out:[1];
 }
 
-/* slangetrekning: rangert 1..G blir førsteseed i hver sin pulje */
+/* Rekkefølgen puljene tildeles de best rangerte i.
+   Bit-reversert rekkefølge sprer toppseedene maksimalt:
+   2 puljer → A, B · 4 puljer → A, C, B, D · 8 puljer → A, E, C, G, B, F, D, H
+   Med 4 puljer havner altså 1.-ranka i pulje A og 2.-ranka i pulje C, slik at
+   de to ligger i hver sin halvdel av cupen og først kan møtes i finalen. */
+function groupSeedOrder(G){
+  let p=1; while(p<G) p*=2;
+  const bits=Math.log2(p), out=[];
+  for(let i=0;i<p;i++){
+    let r=0;
+    for(let b=0;b<bits;b++) if(i&(1<<b)) r|=1<<(bits-1-b);
+    if(r<G) out.push(r);
+  }
+  return out;
+}
+
+/* slangetrekning: rangert 1..G blir førsteseed i hver sin pulje,
+   fordelt etter rekkefølgen over */
 function serpentine(list,G){
+  const order=groupSeedOrder(G);
   const gs=Array.from({length:G},()=>[]);
   list.forEach((k,i)=>{
     const row=Math.floor(i/G), col=i%G;
-    gs[row%2===0?col:G-1-col].push(k);
+    gs[order[row%2===0?col:G-1-col]].push(k);
   });
   return gs;
 }
 
-/* alle møter alle (sirkelmetoden) */
+/* alle møter alle (sirkelmetoden). Puljer med bare 3 spillere spiller
+   dobbel serie — to kamper mot hver motstander. */
 function roundRobin(ids){
   const a=[...ids]; if(a.length%2) a.push(null);
   const n=a.length, out=[];
@@ -1001,6 +1020,7 @@ function roundRobin(ids){
     }
     a.splice(1,0,a.pop());
   }
+  if(ids.length===3) out.push(...out.map(m=>({a:m.b,b:m.a,r:null})));
   return out;
 }
 
@@ -1024,10 +1044,13 @@ function outcomes(need){
 
 /* --------- puljetabell: NDF kap. 3.2 § 2D --------- */
 function h2h(g,x,y){
-  const m=g.matches.find(m=>m.r&&((m.a===x&&m.b===y)||(m.a===y&&m.b===x)));
-  if(!m) return 0;
-  const xw=(m.a===x?m.r[0]>m.r[1]:m.r[1]>m.r[0]);
-  return xw?-1:1;
+  let wx=0,wy=0;
+  g.matches.forEach(m=>{
+    if(!m.r) return;
+    if(!((m.a===x&&m.b===y)||(m.a===y&&m.b===x))) return;
+    ((m.a===x?m.r[0]>m.r[1]:m.r[1]>m.r[0]) ? wx++ : wy++);
+  });
+  return wx===wy?0:(wx>wy?-1:1);
 }
 function table(g){
   const st={};
@@ -1071,7 +1094,8 @@ function tnStart(){
   });
   const seedNo={}; ranked.forEach((k,i)=>seedNo[k]=i+1);
   const parts=serpentine(ranked,G);
-  TN={
+  const gOrder=[]; groupSeedOrder(G).forEach((gi,i)=>gOrder[gi]=i);
+  TN={ gOrder,
     name:document.getElementById('tn-name').value.trim()||'Klubbkveld',
     date:document.getElementById('tn-date').value||new Date().toISOString().slice(0,10),
     names,seedNo,
@@ -1089,9 +1113,10 @@ function buildKO(){
   for(let i=0;i<maxLen;i++){
     const band=[];
     tabs.forEach((t,gi)=>{ if(t[i]) band.push({k:t[i].k,g:gi,band:i}); });
-    // Innenfor hver plassering rangeres det etter seeding, slik at de to best
-    // seedede puljevinnerne havner i hver sin halvdel og først møtes i finalen.
-    band.sort((a,b)=> TN.seedNo[a.k]-TN.seedNo[b.k]);
+    // Puljas plass i seedingrekkefølgen bestemmer plassen i cupen. Med 4 puljer
+    // gir det pulje A og C i hver sin halvdel, så vinnerne der først kan møtes
+    // i finalen — akkurat som toppseedene ble plassert ved puljeoppsettet.
+    band.sort((a,b)=> (TN.gOrder?TN.gOrder[a.g]-TN.gOrder[b.g]:0) || TN.seedNo[a.k]-TN.seedNo[b.k]);
     band.forEach(x=>pos.push(x));
   }
   const N=pos.length;
@@ -1205,7 +1230,7 @@ function tnSetup(){
       <span class="tick"></span><span>${esc(tnPickNames[k])}</span><span class="sr">gjest</span></button>`).join('');
   const n=tnPick.size, choices=groupChoices(Math.max(n,4)), sug=suggestGroups(Math.max(n,4));
   return `<div class="block"><h2>Ny turnering <span>puljespill og cup etter NDFs bestemmelser</span></h2>
-    <p class="hint">Velg spillerne som er med. Puljene settes opp etter sesongrankingen — de høyest rangerte blir førsteseed i hver sin pulje. Alle går videre til cupspill.</p>
+    <p class="hint">Velg spillerne som er med. Puljene trekkes ikke — de settes etter sesongrankingen. Best rangerte blir førsteseed i pulje A, nest beste i pulje C, tredje i B og fjerde i D når det er fire puljer, slik at de to øverste ligger i hver sin halvdel av cupen. Puljer med tre spillere spiller dobbel serie. Alle går videre til cupspill.</p>
     <div class="panel panel-pad">
       <div>
         <div class="fld"><label>Navn på turneringen</label><input id="tn-name" type="text" placeholder="Klubbkveld" value="Klubbkveld"></div>
@@ -1235,11 +1260,12 @@ function tnRun(){
     const t=table(g), tie=t.some(r=>r.tie);
     return `<div class="gcard"><h3>${esc(g.name)}</h3>
       <div class="scroll"><table class="gtbl"><thead><tr>
-        <th></th><th>Spiller</th><th class="r mono">S</th><th class="r mono">T</th>
+        <th></th><th>Spiller</th><th class="r mono">Sd</th><th class="r mono">S</th><th class="r mono">T</th>
         <th class="r mono">Leg</th><th class="r mono">±</th><th></th></tr></thead>
       <tbody>${t.map((r,i)=>`<tr>
         <td class="qual ${i===0?'q1':''}">${i+1}</td>
         <td class="nm">${esc(nm(r.k))}${r.tie?' <span class="badge b180">lik</span>':''}</td>
+        <td class="r mono" style="color:var(--faint)">${TN.seedNo[r.k]}</td>
         <td class="r mono">${r.w}</td><td class="r mono">${r.l}</td>
         <td class="r mono">${r.lf}–${r.la}</td>
         <td class="r mono" style="font-weight:600">${r.d>0?'+':''}${r.d}</td>
@@ -1264,7 +1290,7 @@ function tnRun(){
 
   const R=TN.ko.rounds;
   h+=`<div class="block"><h2>Cupspill <span>alle videre · best av 5, finale best av 7</span></h2>
-    <p class="hint">Puljevinnere er plassert lengst fra hverandre, og førsteplass møter sisteplass fra en annen pulje. Bokstaven bak navnet viser pulje.</p>
+    <p class="hint">Puljas plass i seedingen bestemmer plassen i cupen: vinnerne av pulje A og C ligger i hver sin halvdel og kan først møtes i finalen. Førsteplass møter sisteplass fra en annen pulje. Bokstaven bak navnet viser pulje.</p>
     ${TN.groups.length>1&&TN.clashes&&TN.clashes.length?`<p class="note">Fikk ikke unngå at ${TN.clashes.map(c=>esc(nm(c[0]))+' og '+esc(nm(c[1]))).join(', ')} fra samme pulje møtes i første runde — puljestørrelsene gjør det umulig uten å bryte seedingen.</p>`:''}
     <div class="bracket">${R.map((rd,ri)=>`
       <div class="rnd"><h4>${roundName(rd.length)}</h4>
