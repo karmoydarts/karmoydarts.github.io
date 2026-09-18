@@ -1064,7 +1064,9 @@ function table(g){
   });
   let rows=Object.values(st);
   rows.forEach(r=>r.d=r.lf-r.la);
-  rows.sort((a,b)=> b.w-a.w || b.d-a.d || b.lf-a.lf || h2h(g,a.k,b.k) || a.k.localeCompare(b.k));
+  // Siste skillekriterium er seedingen, slik at tabellen viser seedet
+  // rekkefølge før noen kamper er spilt.
+  rows.sort((a,b)=> b.w-a.w || b.d-a.d || b.lf-a.lf || h2h(g,a.k,b.k) || TN.seedNo[a.k]-TN.seedNo[b.k]);
   // uløst likhet = trenger avgjørende leg (NDF: ett eliminerings-leg 501)
   rows.forEach((r,i)=>{
     const p=rows[i-1];
