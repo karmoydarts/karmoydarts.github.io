@@ -245,6 +245,84 @@ td.mono,th.mono{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabul
 .rung .pv{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;line-height:1.05}
 .rung.a .pv{color:var(--brass)}.rung.b .pv{color:var(--bull)}.rung.c .pv{color:var(--wire)}
 
+/* ---------- turnering ---------- */
+.setup-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(178px,1fr));gap:6px;margin-bottom:14px}
+.pbtn{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;
+  background:var(--surface);color:var(--text-2);font:inherit;font-size:13px;cursor:pointer;text-align:left}
+.pbtn:hover{border-color:var(--text-2)}
+.pbtn[aria-pressed="true"]{background:var(--wire-wash);border-color:var(--wire);color:var(--wire-ink);font-weight:600}
+.pbtn .tick{width:15px;height:15px;border:1.5px solid var(--faint);border-radius:4px;flex:0 0 auto;position:relative}
+.pbtn[aria-pressed="true"] .tick{background:var(--wire);border-color:var(--wire)}
+.pbtn[aria-pressed="true"] .tick::after{content:'';position:absolute;left:4px;top:1px;width:4px;height:8px;
+  border:solid #fff;border-width:0 2px 2px 0;transform:rotate(42deg)}
+.pbtn .sr{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--faint)}
+.btn{padding:9px 16px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--text);
+  font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.btn:hover{border-color:var(--text-2)}
+.btn.go{background:var(--bull);border-color:var(--bull);color:#fff}
+.btn.go:hover{opacity:.9}
+.btn.ghost{background:none;color:var(--muted);font-weight:500}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px}
+.fld{display:inline-flex;flex-direction:column;gap:4px;margin-right:14px;margin-bottom:10px}
+.fld label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.fld input,.fld select{padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--raised);
+  color:var(--text);font:inherit;font-size:14px}
+
+.gwrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}
+.gcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.gcard>h3{font-size:17px;text-transform:uppercase;letter-spacing:.04em;padding:10px 13px;border-bottom:1px solid var(--line)}
+.gtbl{width:100%;min-width:0;font-size:13px}
+.gtbl th{font-size:10px;padding:6px 8px}
+.gtbl td{padding:6px 8px}
+.gtbl td.nm{width:99%;white-space:normal;line-height:1.3}
+.qual{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;color:var(--faint);width:22px;text-align:center}
+.qual.q1{color:var(--brass)}
+.ord{display:flex;gap:2px}
+.ord button{width:19px;height:19px;padding:0;border:1px solid var(--line);border-radius:4px;background:none;
+  color:var(--muted);cursor:pointer;font-size:10px;line-height:1}
+.ord button:hover{border-color:var(--text-2);color:var(--text)}
+.mlist{border-top:1px solid var(--line);padding:9px 13px;display:flex;flex-direction:column;gap:7px}
+.m{display:flex;flex-direction:column;gap:5px;padding:7px 0;border-bottom:1px dotted var(--line)}
+.m:last-child{border-bottom:none}
+.mnames{display:flex;align-items:center;gap:8px;font-size:13px}
+.mnames .s{flex:1;min-width:0;line-height:1.3}
+.mnames .s.b{font-weight:600}
+.mnames .s.r{text-align:right}
+.mnames .vs{font-size:10px;color:var(--faint);letter-spacing:.1em;flex:0 0 auto}
+.mnames .sc{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:500;flex:0 0 auto;
+  background:var(--line-soft);padding:1px 7px;border-radius:4px}
+.opts{display:flex;gap:4px;flex-wrap:wrap}
+.opt{font-family:'IBM Plex Mono',monospace;font-size:12px;padding:3px 8px;border:1px solid var(--line);
+  border-radius:5px;background:var(--raised);color:var(--muted);cursor:pointer}
+.opt:hover{border-color:var(--wire);color:var(--wire-ink)}
+.note{font-size:12px;color:var(--bull-ink);background:var(--bull-wash);padding:7px 11px;border-radius:7px;margin:9px 13px}
+
+.bracket{display:flex;gap:14px;overflow-x:auto;padding-bottom:8px}
+.rnd{flex:0 0 232px;display:flex;flex-direction:column;gap:8px}
+.rnd>h4{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);margin:0}
+.rnd .fill{flex:1}
+.kom{background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:9px 11px;
+  display:flex;flex-direction:column;gap:6px}
+.kom.done{background:var(--raised)}
+.kslot{display:flex;align-items:center;gap:7px;font-size:13px}
+.kslot .sd{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--faint);width:17px;flex:0 0 auto}
+.kslot .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text-2)}
+.kslot.win .nm{font-weight:700;color:var(--text)}
+.kslot.out .nm{color:var(--faint);text-decoration:line-through}
+.kslot .lg{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;flex:0 0 auto}
+.kslot .gp{font-size:10px;color:var(--faint);flex:0 0 auto}
+.bye{font-size:11px;color:var(--faint);font-style:italic}
+
+.podium{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:14px}
+.pod{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+.pod.g{border-color:var(--brass);background:var(--brass-wash)}
+.pod .pl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.pod .pn{font-family:'Barlow Condensed',sans-serif;font-size:21px;font-weight:700;line-height:1.1;margin-top:3px}
+pre.copy{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:13px;
+  font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.55;overflow-x:auto;white-space:pre;margin:0}
+
 footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;color:var(--faint)}
 
 @media (max-width:640px){
@@ -553,7 +631,7 @@ const NIGHTS=[
 ];
 
 /* Dato som vises nederst på siden – oppdater sammen med ny kveld. */
-const UPDATED="17. september 2026";
+const UPDATED="18. september 2026";
 
 /* ---------- poengstige ---------- */
 const LADDER=[
@@ -657,7 +735,8 @@ const VIEWS=[
   {id:'nights',label:'Kvelder',render:vNights},
   {id:'legs',label:'180 & raske legg',render:vLegs},
   {id:'co',label:'Utganger',render:vCo},
-  {id:'avg',label:'Snitt per kveld',render:vAvg}
+  {id:'avg',label:'Snitt per kveld',render:vAvg},
+  {id:'tn',label:'Turnering',render:vTn}
 ];
 
 function strip(items){
@@ -867,6 +946,441 @@ function vAvg(){
     <p class="hint">Spillere med under ${MIN_ATT} kvelder står uten plassnummer.</p></div>`;
 }
 
+/* =======================================================================
+   TURNERINGSMODUL
+   Puljeinndeling, kampoppsett og cupseeding etter Norges Dartsforbunds
+   bestemmelser (kap. 4 § 5 puljeinndeling, kap. 3.2 § 2D tabellkriterier,
+   kap. 4 § 6 videregang). Alle spillere går videre til cupspill.
+   ======================================================================= */
+const TKEY='kdc-tn';
+const WIN_GROUP=2, WIN_KO=3, WIN_FINAL=4;   // antall leg som må vinnes
+let TN=null, tnPick=new Set(), tnGuest=0;
+
+function tnLoad(){try{const r=localStorage.getItem(TKEY);if(r)TN=JSON.parse(r);}catch(e){}}
+function tnSave(){try{TN?localStorage.setItem(TKEY,JSON.stringify(TN)):localStorage.removeItem(TKEY);}catch(e){}}
+const nm=k=>(TN&&TN.names[k])||k;
+
+/* NDF kap. 4 § 5 – anbefalt antall puljer */
+function suggestGroups(n){
+  if(n<=6) return 1;
+  if(n<=12) return 2;
+  if(n<=24) return 4;
+  if(n<=48) return 8;
+  return 16;
+}
+function groupChoices(n){
+  const out=[];
+  for(let g=1;g<=16;g++){
+    const big=Math.ceil(n/g), small=Math.floor(n/g);
+    if(g>1&&(big>6||small<3)) continue;
+    if(g===1&&n>6) continue;
+    if(small<2) continue;
+    out.push(g);
+  }
+  return out.length?out:[1];
+}
+
+/* slangetrekning: rangert 1..G blir førsteseed i hver sin pulje */
+function serpentine(list,G){
+  const gs=Array.from({length:G},()=>[]);
+  list.forEach((k,i)=>{
+    const row=Math.floor(i/G), col=i%G;
+    gs[row%2===0?col:G-1-col].push(k);
+  });
+  return gs;
+}
+
+/* alle møter alle (sirkelmetoden) */
+function roundRobin(ids){
+  const a=[...ids]; if(a.length%2) a.push(null);
+  const n=a.length, out=[];
+  for(let r=0;r<n-1;r++){
+    for(let i=0;i<n/2;i++){
+      const x=a[i], y=a[n-1-i];
+      if(x!=null&&y!=null) out.push(r%2 ? {a:y,b:x,r:null} : {a:x,b:y,r:null});
+    }
+    a.splice(1,0,a.pop());
+  }
+  return out;
+}
+
+/* standard cupoppsett: 1 mot sist, 2 mot nest sist, vinnere møtes sist */
+function seedSlots(size){
+  let L=[1];
+  while(L.length<size){
+    const n=L.length*2, out=[];
+    L.forEach(x=>{out.push(x,n+1-x);});
+    L=out;
+  }
+  return L;
+}
+
+function outcomes(need){
+  const o=[];
+  for(let l=need-1;l>=0;l--) o.push([need,l]);
+  for(let l=0;l<need;l++) o.push([l,need]);
+  return o;
+}
+
+/* --------- puljetabell: NDF kap. 3.2 § 2D --------- */
+function h2h(g,x,y){
+  const m=g.matches.find(m=>m.r&&((m.a===x&&m.b===y)||(m.a===y&&m.b===x)));
+  if(!m) return 0;
+  const xw=(m.a===x?m.r[0]>m.r[1]:m.r[1]>m.r[0]);
+  return xw?-1:1;
+}
+function table(g){
+  const st={};
+  g.players.forEach(k=>st[k]={k,w:0,l:0,lf:0,la:0,p:0});
+  g.matches.forEach(m=>{
+    if(!m.r) return;
+    const [x,y]=m.r;
+    st[m.a].lf+=x; st[m.a].la+=y; st[m.b].lf+=y; st[m.b].la+=x;
+    st[m.a].p++; st[m.b].p++;
+    if(x>y){st[m.a].w++; st[m.b].l++;} else {st[m.b].w++; st[m.a].l++;}
+  });
+  let rows=Object.values(st);
+  rows.forEach(r=>r.d=r.lf-r.la);
+  rows.sort((a,b)=> b.w-a.w || b.d-a.d || b.lf-a.lf || h2h(g,a.k,b.k) || a.k.localeCompare(b.k));
+  // uløst likhet = trenger avgjørende leg (NDF: ett eliminerings-leg 501)
+  rows.forEach((r,i)=>{
+    const p=rows[i-1];
+    r.tie = !!(p && p.w===r.w && p.d===r.d && p.lf===r.lf && h2h(g,p.k,r.k)===0 && r.p>0);
+  });
+  if(g.order&&g.order.length===rows.length){
+    const byKey={}; rows.forEach(r=>byKey[r.k]=r);
+    const manual=g.order.map(k=>byKey[k]).filter(Boolean);
+    if(manual.length===rows.length){manual.forEach(r=>r.tie=false); return manual;}
+  }
+  return rows;
+}
+const groupDone=g=>g.matches.every(m=>m.r);
+const allGroupsDone=()=>TN.groups.every(groupDone);
+
+/* --------- start turnering --------- */
+function tnStart(){
+  const keys=[...tnPick];
+  if(keys.length<4) return;
+  const G=Number(document.getElementById('tn-g').value)||suggestGroups(keys.length);
+  const names={};
+  keys.forEach(k=>{names[k]=k[0]==='p'?P[Number(k.slice(1))].name:tnPickNames[k];});
+  const ranked=keys.slice().sort((a,b)=>{
+    const ra=a[0]==='p'?P[Number(a.slice(1))].rank:9999;
+    const rb=b[0]==='p'?P[Number(b.slice(1))].rank:9999;
+    return ra-rb||names[a].localeCompare(names[b],'nb');
+  });
+  const seedNo={}; ranked.forEach((k,i)=>seedNo[k]=i+1);
+  const parts=serpentine(ranked,G);
+  TN={
+    name:document.getElementById('tn-name').value.trim()||'Klubbkveld',
+    date:document.getElementById('tn-date').value||new Date().toISOString().slice(0,10),
+    names,seedNo,
+    groups:parts.map((ps,i)=>({name:'Pulje '+String.fromCharCode(65+i),players:ps,matches:roundRobin(ps),order:null})),
+    ko:null
+  };
+  tnSave(); draw();
+}
+
+/* --------- bygg cupen --------- */
+function buildKO(){
+  const pos=[];                                  // pos[i] = alle som ble nr. i+1
+  const tabs=TN.groups.map(table);
+  const maxLen=Math.max(...tabs.map(t=>t.length));
+  for(let i=0;i<maxLen;i++){
+    const band=[];
+    tabs.forEach((t,gi)=>{ if(t[i]) band.push({k:t[i].k,g:gi,band:i}); });
+    // Innenfor hver plassering rangeres det etter seeding, slik at de to best
+    // seedede puljevinnerne havner i hver sin halvdel og først møtes i finalen.
+    band.sort((a,b)=> TN.seedNo[a.k]-TN.seedNo[b.k]);
+    band.forEach(x=>pos.push(x));
+  }
+  const N=pos.length;
+  let size=1; while(size<N) size*=2;
+  const slots=seedSlots(size).map(s=>s<=N?pos[s-1]:null);
+
+  /* NDF kap. 4 § 3: spillere fra samme klubb skal ikke trekkes mot hverandre i
+     første ordinære runde — her brukt på pulje. "Så langt det lar seg gjøre":
+     vi bytter bare mellom spillere med lik eller nærliggende puljeplassering,
+     slik at seedingen holdes intakt. Det som ikke lar seg løse, rapporteres. */
+  const partner=j=>j%2===0?j+1:j-1;
+  const bandOf=x=>x?x.band:maxLen+1;
+  const clash=i=>{const a=slots[i],b=slots[partner(i)];return !!(a&&b&&a.g===b.g);};
+  for(let pass=0;pass<60;pass++){
+    let changed=false;
+    for(let i=0;i<size;i+=2){
+      if(!clash(i)) continue;
+      let best=null;
+      for(const mine of [i+1,i]){                    // prøv å flytte begge
+        const other=slots[partner(mine)];
+        for(let j=0;j<size;j++){
+          if(j===i||j===i+1) continue;
+          const cand=slots[j], candMate=slots[partner(j)];
+          if(other && cand && cand.g===other.g) continue;              // ny kollisjon her
+          if(candMate && slots[mine] && candMate.g===slots[mine].g) continue; // ny kollisjon der
+          const cost=Math.abs(bandOf(cand)-bandOf(slots[mine]));
+          if(!best||cost<best.cost) best={mine,j,cost};
+        }
+      }
+      if(best){ const t=slots[best.j]; slots[best.j]=slots[best.mine]; slots[best.mine]=t; changed=true; }
+    }
+    if(!changed) break;
+  }
+  TN.clashes=[];
+  for(let i=0;i<size;i+=2) if(clash(i)) TN.clashes.push([slots[i].k,slots[i+1].k]);
+
+  const rounds=[]; let cur=[];
+  for(let i=0;i<size;i+=2) cur.push({a:slots[i],b:slots[i+1],r:null});
+  rounds.push(cur);
+  while(cur.length>1){ cur=cur.map(()=>({a:null,b:null,r:null})).slice(0,cur.length/2); rounds.push(cur); }
+  TN.ko={rounds,size};
+  propagate(); tnSave();
+}
+
+function winner(m){
+  if(m.a&&!m.b) return m.a;
+  if(m.b&&!m.a) return m.b;
+  if(!m.r) return null;
+  return m.r[0]>m.r[1]?m.a:m.b;
+}
+function propagate(){
+  const R=TN.ko.rounds;
+  for(let r=0;r<R.length-1;r++){
+    R[r].forEach((m,i)=>{
+      const t=R[r+1][i>>1];
+      const w=winner(m);
+      if(i%2===0) t.a=w; else t.b=w;
+      if((t.a===null||t.b===null)&&t.r&&!(t.a&&!t.b)&&!(t.b&&!t.a)) t.r=null;
+    });
+  }
+}
+const needFor=r=>r===TN.ko.rounds.length-1?WIN_FINAL:WIN_KO;
+function roundName(n){
+  return {1:'Finale',2:'Semifinale',4:'Kvartfinale',8:'8-delsfinale',16:'16-delsfinale',32:'32-delsfinale'}[n]||(n*2+' spillere');
+}
+
+/* --------- sluttplassering --------- */
+function placings(){
+  const R=TN.ko.rounds, out=[], seen=new Set();
+  const fin=R[R.length-1][0], champ=winner(fin);
+  if(champ){ out.push(champ); seen.add(champ.k); const l=fin.a===champ?fin.b:fin.a; if(l){out.push(l);seen.add(l.k);} }
+  for(let r=R.length-2;r>=0;r--){
+    const losers=[];
+    R[r].forEach(m=>{
+      const w=winner(m); if(!w) return;
+      const l=m.a===w?m.b:m.a;
+      if(l&&!seen.has(l.k)){losers.push(l);seen.add(l.k);}
+    });
+    losers.sort((a,b)=>TN.seedNo[a.k]-TN.seedNo[b.k]);
+    losers.forEach(x=>out.push(x));
+  }
+  return out;
+}
+const tnComplete=()=>TN.ko&&!!winner(TN.ko.rounds[TN.ko.rounds.length-1][0]);
+
+function resultText(){
+  const pl=placings();
+  const fin=TN.ko.rounds[TN.ko.rounds.length-1][0];
+  const w=winner(fin), l=fin.a===w?fin.b:fin.a;
+  let s=`${TN.name} ${TN.date}\n${Object.keys(TN.names).length}stk\n`;
+  if(w&&l&&fin.r) s+=`Finale ${nm(w.k).split(' ')[0]} - ${nm(l.k).split(' ')[0]}  ${fin.r[0]}-${fin.r[1]}\n`;
+  pl.forEach((x,i)=>{s+=`${i+1}. ${nm(x.k)}\n`;});
+  return s;
+}
+
+/* --------- visning --------- */
+let tnPickNames={};
+function vTn(){
+  if(!TN) return tnSetup();
+  return tnRun();
+}
+
+function tnSetup(){
+  const list=RANKED.map(p=>{
+    const k='p'+p.id;
+    return `<button class="pbtn" type="button" data-tn="pick" data-k="${k}" data-n="${esc(p.name)}" aria-pressed="${tnPick.has(k)}">
+      <span class="tick"></span><span>${esc(p.name)}</span><span class="sr">${p.rank}</span></button>`;
+  }).join('');
+  const guests=Object.keys(tnPickNames).filter(k=>k[0]==='g').map(k=>
+    `<button class="pbtn" type="button" data-tn="pick" data-k="${k}" data-n="${esc(tnPickNames[k])}" aria-pressed="${tnPick.has(k)}">
+      <span class="tick"></span><span>${esc(tnPickNames[k])}</span><span class="sr">gjest</span></button>`).join('');
+  const n=tnPick.size, choices=groupChoices(Math.max(n,4)), sug=suggestGroups(Math.max(n,4));
+  return `<div class="block"><h2>Ny turnering <span>puljespill og cup etter NDFs bestemmelser</span></h2>
+    <p class="hint">Velg spillerne som er med. Puljene settes opp etter sesongrankingen — de høyest rangerte blir førsteseed i hver sin pulje. Alle går videre til cupspill.</p>
+    <div class="panel panel-pad">
+      <div>
+        <div class="fld"><label>Navn på turneringen</label><input id="tn-name" type="text" placeholder="Klubbkveld" value="Klubbkveld"></div>
+        <div class="fld"><label>Dato</label><input id="tn-date" type="date" value="${new Date().toISOString().slice(0,10)}"></div>
+        <div class="fld"><label>Antall puljer</label><select id="tn-g">
+          ${choices.map(g=>`<option value="${g}"${g===sug?' selected':''}>${g} ${g===1?'pulje':'puljer'} · ${Math.floor(n/g)||'–'}–${Math.ceil(n/g)||'–'} spillere</option>`).join('')}
+        </select></div>
+      </div>
+      <div class="section-sep" style="height:1px;background:var(--line);margin:6px 0 14px"></div>
+      <div class="setup-grid">${list}${guests}</div>
+      <div class="btnrow">
+        <input class="q" id="tn-guest" type="text" placeholder="Navn på gjestespiller…" style="margin:0;max-width:220px">
+        <button class="btn" type="button" data-tn="addguest">Legg til gjest</button>
+      </div>
+      <div class="btnrow" style="margin-top:16px;border-top:1px solid var(--line);padding-top:14px">
+        <button class="btn go" type="button" data-tn="start"${n<4?' disabled':''}>Start turneringen</button>
+        <span class="hint" style="margin:0">${n} spiller${n===1?'':'e'} valgt${n<4?' — minst 4 for å starte':''}</span>
+      </div>
+    </div></div>`;
+}
+
+function tnRun(){
+  const done=allGroupsDone();
+  let h=`<div class="block"><h2>${esc(TN.name)} <span>${esc(TN.date)} · ${Object.keys(TN.names).length} spillere · ${TN.groups.length} ${TN.groups.length===1?'pulje':'puljer'}</span></h2>`;
+
+  h+=`<div class="gwrap">`+TN.groups.map((g,gi)=>{
+    const t=table(g), tie=t.some(r=>r.tie);
+    return `<div class="gcard"><h3>${esc(g.name)}</h3>
+      <div class="scroll"><table class="gtbl"><thead><tr>
+        <th></th><th>Spiller</th><th class="r mono">S</th><th class="r mono">T</th>
+        <th class="r mono">Leg</th><th class="r mono">±</th><th></th></tr></thead>
+      <tbody>${t.map((r,i)=>`<tr>
+        <td class="qual ${i===0?'q1':''}">${i+1}</td>
+        <td class="nm">${esc(nm(r.k))}${r.tie?' <span class="badge b180">lik</span>':''}</td>
+        <td class="r mono">${r.w}</td><td class="r mono">${r.l}</td>
+        <td class="r mono">${r.lf}–${r.la}</td>
+        <td class="r mono" style="font-weight:600">${r.d>0?'+':''}${r.d}</td>
+        <td><span class="ord">
+          <button type="button" data-tn="up" data-g="${gi}" data-i="${i}"${i===0?' disabled':''}>▲</button>
+          <button type="button" data-tn="down" data-g="${gi}" data-i="${i}"${i===t.length-1?' disabled':''}>▼</button>
+        </span></td></tr>`).join('')}</tbody></table></div>
+      ${tie?`<p class="note">Lik på alle kriterier. NDF: spill ett avgjørende leg 501, og sett rekkefølgen med pilene.</p>`:''}
+      <div class="mlist">${g.matches.map((m,mi)=>tnMatch(m,WIN_GROUP,`data-tn="gres" data-g="${gi}" data-m="${mi}"`)).join('')}</div>
+    </div>`;
+  }).join('')+`</div>`;
+
+  if(!TN.ko){
+    h+=`<div class="btnrow">
+      <button class="btn go" type="button" data-tn="buildko"${done?'':' disabled'}>Sett opp cupspillet</button>
+      ${done?'<span class="hint" style="margin:0">Alle puljekamper er spilt.</span>':'<span class="hint" style="margin:0">Spill ferdig alle puljekampene først.</span>'}
+      <button class="btn ghost" type="button" data-tn="reset" style="margin-left:auto">Avbryt turneringen</button>
+    </div></div>`;
+    return h;
+  }
+  h+=`</div>`;
+
+  const R=TN.ko.rounds;
+  h+=`<div class="block"><h2>Cupspill <span>alle videre · best av 5, finale best av 7</span></h2>
+    <p class="hint">Puljevinnere er plassert lengst fra hverandre, og førsteplass møter sisteplass fra en annen pulje. Bokstaven bak navnet viser pulje.</p>
+    ${TN.groups.length>1&&TN.clashes&&TN.clashes.length?`<p class="note">Fikk ikke unngå at ${TN.clashes.map(c=>esc(nm(c[0]))+' og '+esc(nm(c[1]))).join(', ')} fra samme pulje møtes i første runde — puljestørrelsene gjør det umulig uten å bryte seedingen.</p>`:''}
+    <div class="bracket">${R.map((rd,ri)=>`
+      <div class="rnd"><h4>${roundName(rd.length)}</h4>
+        ${rd.map((m,mi)=>tnKo(m,ri,mi)).join('')}
+        <div class="fill"></div></div>`).join('')}</div></div>`;
+
+  if(tnComplete()){
+    const pl=placings();
+    h+=`<div class="block"><h2>Resultat</h2>
+      <div class="podium">${pl.slice(0,4).map((x,i)=>`
+        <div class="pod${i===0?' g':''}"><div class="pl">${i+1}. plass</div><div class="pn">${esc(nm(x.k))}</div>
+        <div class="mini">+${points(i+1)} rankingpoeng</div></div>`).join('')}</div>
+      <p class="hint">Kopier teksten under rett inn i Facebook-gruppa — eller send den til meg, så fører jeg kvelden inn i rankingen.</p>
+      <pre class="copy" id="tn-out">${esc(resultText())}</pre>
+      <div class="btnrow">
+        <button class="btn" type="button" data-tn="copy">Kopier resultatlisten</button>
+        <button class="btn ghost" type="button" data-tn="reset" style="margin-left:auto">Ny turnering</button>
+      </div></div>`;
+  }else{
+    h+=`<div class="btnrow"><button class="btn ghost" type="button" data-tn="reset" style="margin-left:auto">Avbryt turneringen</button></div>`;
+  }
+  return h;
+}
+
+function tnMatch(m,need,attrs){
+  const a=nm(m.a), b=nm(m.b);
+  const aw=m.r&&m.r[0]>m.r[1], bw=m.r&&m.r[1]>m.r[0];
+  return `<div class="m">
+    <div class="mnames">
+      <span class="s${aw?' b':''}">${esc(a)}</span>
+      ${m.r?`<span class="sc">${m.r[0]}–${m.r[1]}</span>`:'<span class="vs">MOT</span>'}
+      <span class="s r${bw?' b':''}">${esc(b)}</span>
+    </div>
+    ${m.r
+      ? `<div class="opts"><button class="opt" type="button" ${attrs} data-x="-1">endre</button></div>`
+      : `<div class="opts">${outcomes(need).map(([x,y])=>`<button class="opt" type="button" ${attrs} data-x="${x}" data-y="${y}">${x}–${y}</button>`).join('')}</div>`}
+  </div>`;
+}
+
+function tnKo(m,ri,mi){
+  const need=needFor(ri);
+  const w=winner(m);
+  const slot=(x,lg)=>{
+    if(!x) return `<div class="kslot"><span class="nm bye">—</span></div>`;
+    const cls=w?(w===x?' win':' out'):'';
+    return `<div class="kslot${cls}">
+      <span class="nm">${esc(nm(x.k))}</span>
+      <span class="gp">${String.fromCharCode(65+x.g)}</span>
+      <span class="lg">${lg??''}</span></div>`;
+  };
+  const bye=(m.a&&!m.b)||(m.b&&!m.a);
+  return `<div class="kom${m.r||bye?' done':''}">
+    ${slot(m.a,m.r?m.r[0]:null)}
+    ${slot(m.b,m.r?m.r[1]:null)}
+    ${!m.a||!m.b ? (bye?'<div class="bye">walkover</div>':'') :
+      m.r ? `<div class="opts"><button class="opt" type="button" data-tn="kres" data-r="${ri}" data-m="${mi}" data-x="-1">endre</button></div>`
+          : `<div class="opts">${outcomes(need).map(([x,y])=>`<button class="opt" type="button" data-tn="kres" data-r="${ri}" data-m="${mi}" data-x="${x}" data-y="${y}">${x}–${y}</button>`).join('')}</div>`}
+  </div>`;
+}
+
+/* --------- hendelser --------- */
+function tnAction(el){
+  const a=el.dataset.tn;
+  if(a==='pick'){
+    const k=el.dataset.k;
+    tnPickNames[k]=el.dataset.n;
+    tnPick.has(k)?tnPick.delete(k):tnPick.add(k);
+    const keep={name:document.getElementById('tn-name').value,date:document.getElementById('tn-date').value};
+    draw();
+    document.getElementById('tn-name').value=keep.name;
+    document.getElementById('tn-date').value=keep.date;
+    return;
+  }
+  if(a==='addguest'){
+    const i=document.getElementById('tn-guest'), v=i.value.trim();
+    if(!v) return;
+    const k='g'+(++tnGuest); tnPickNames[k]=v; tnPick.add(k);
+    const keep={name:document.getElementById('tn-name').value,date:document.getElementById('tn-date').value};
+    draw();
+    document.getElementById('tn-name').value=keep.name;
+    document.getElementById('tn-date').value=keep.date;
+    return;
+  }
+  if(a==='start'){ tnStart(); return; }
+  if(a==='reset'){ TN=null; tnSave(); draw(); return; }
+  if(a==='buildko'){ buildKO(); draw(); return; }
+  if(a==='gres'){
+    const g=TN.groups[+el.dataset.g], m=g.matches[+el.dataset.m];
+    m.r = +el.dataset.x<0 ? null : [+el.dataset.x,+el.dataset.y];
+    g.order=null;
+    if(TN.ko){TN.ko=null;}
+    tnSave(); draw(); return;
+  }
+  if(a==='kres'){
+    const m=TN.ko.rounds[+el.dataset.r][+el.dataset.m];
+    m.r = +el.dataset.x<0 ? null : [+el.dataset.x,+el.dataset.y];
+    propagate(); tnSave(); draw(); return;
+  }
+  if(a==='up'||a==='down'){
+    const g=TN.groups[+el.dataset.g], i=+el.dataset.i;
+    const cur=table(g).map(r=>r.k);
+    const j=a==='up'?i-1:i+1;
+    if(j<0||j>=cur.length) return;
+    [cur[i],cur[j]]=[cur[j],cur[i]];
+    g.order=cur;
+    if(TN.ko) TN.ko=null;
+    tnSave(); draw(); return;
+  }
+  if(a==='copy'){
+    const t=resultText();
+    navigator.clipboard?.writeText(t).then(()=>{el.textContent='Kopiert!';setTimeout(()=>{el.textContent='Kopier resultatlisten';},1800);})
+      .catch(()=>{el.textContent='Marker teksten og kopier';});
+    return;
+  }
+}
+
 /* ---------- shell ---------- */
 let current='rank';
 const tabs=document.getElementById('tabs'), views=document.getElementById('views');
@@ -881,6 +1395,8 @@ tabs.addEventListener('click',e=>{
   current=b.dataset.v; draw(); window.scrollTo({top:0,behavior:'smooth'});
 });
 views.addEventListener('click',e=>{
+  const t=e.target.closest('[data-tn]');
+  if(t){ if(!t.disabled) tnAction(t); return; }
   const r=e.target.closest('.rowbtn'); if(!r) return;
   const id=Number(r.dataset.id);
   openId=openId===id?null:id;
@@ -902,6 +1418,7 @@ document.getElementById('themebtn').addEventListener('click',()=>{
 });
 try{const t=localStorage.getItem('kdc-theme'); if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}
 
+tnLoad();
 draw();
 </script>
 
