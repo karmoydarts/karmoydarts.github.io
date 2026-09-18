@@ -996,15 +996,18 @@ function groupSeedOrder(G){
   return out;
 }
 
-/* slangetrekning: rangert 1..G blir førsteseed i hver sin pulje,
-   fordelt etter rekkefølgen over */
-function serpentine(list,G){
+/* NDF kap. 4 § 4a: én spiller per pulje seedes. De G best rangerte plasseres
+   som førsteseed etter rekkefølgen over — resten trekkes tilfeldig. */
+function drawGroups(ranked,G){
   const order=groupSeedOrder(G);
   const gs=Array.from({length:G},()=>[]);
-  list.forEach((k,i)=>{
-    const row=Math.floor(i/G), col=i%G;
-    gs[order[row%2===0?col:G-1-col]].push(k);
-  });
+  ranked.slice(0,G).forEach((k,i)=>gs[order[i]].push(k));
+  const rest=ranked.slice(G);
+  for(let i=rest.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [rest[i],rest[j]]=[rest[j],rest[i]];
+  }
+  rest.forEach((k,i)=>gs[i%G].push(k));
   return gs;
 }
 
@@ -1064,9 +1067,10 @@ function table(g){
   });
   let rows=Object.values(st);
   rows.forEach(r=>r.d=r.lf-r.la);
-  // Siste skillekriterium er seedingen, slik at tabellen viser seedet
-  // rekkefølge før noen kamper er spilt.
-  rows.sort((a,b)=> b.w-a.w || b.d-a.d || b.lf-a.lf || h2h(g,a.k,b.k) || TN.seedNo[a.k]-TN.seedNo[b.k]);
+  // Siste skillekriterium er trekningsrekkefølgen, slik at tabellen viser
+  // seedet spiller øverst og deretter trekningen før kampene er spilt.
+  rows.sort((a,b)=> b.w-a.w || b.d-a.d || b.lf-a.lf || h2h(g,a.k,b.k)
+    || g.players.indexOf(a.k)-g.players.indexOf(b.k));
   // uløst likhet = trenger avgjørende leg (NDF: ett eliminerings-leg 501)
   rows.forEach((r,i)=>{
     const p=rows[i-1];
@@ -1095,17 +1099,25 @@ function tnStart(){
     return ra-rb||names[a].localeCompare(names[b],'nb');
   });
   const seedNo={}; ranked.forEach((k,i)=>seedNo[k]=i+1);
-  const parts=serpentine(ranked,G);
   const gOrder=[]; groupSeedOrder(G).forEach((gi,i)=>gOrder[gi]=i);
-  TN={ gOrder,
+  TN={ gOrder, G,
     name:document.getElementById('tn-name').value.trim()||'Klubbkveld',
     date:document.getElementById('tn-date').value||new Date().toISOString().slice(0,10),
-    names,seedNo,
-    groups:parts.map((ps,i)=>({name:'Pulje '+String.fromCharCode(65+i),players:ps,matches:roundRobin(ps),order:null})),
-    ko:null
+    names,seedNo,groups:[],ko:null
   };
-  tnSave(); draw();
+  tnRedraw(true);
 }
+
+/* Ny tilfeldig trekning av de useedede. Førsteseedene står fast. */
+function tnRedraw(silent){
+  const ranked=Object.keys(TN.names).sort((a,b)=>TN.seedNo[a]-TN.seedNo[b]);
+  TN.groups=drawGroups(ranked,TN.G).map((ps,i)=>({
+    name:'Pulje '+String.fromCharCode(65+i), players:ps, seed:ps[0],
+    matches:roundRobin(ps), order:null
+  }));
+  TN.ko=null; tnSave(); if(!silent) draw(); else draw();
+}
+const anyPlayed=()=>TN.groups.some(g=>g.matches.some(m=>m.r));
 
 /* --------- bygg cupen --------- */
 function buildKO(){
@@ -1232,7 +1244,7 @@ function tnSetup(){
       <span class="tick"></span><span>${esc(tnPickNames[k])}</span><span class="sr">gjest</span></button>`).join('');
   const n=tnPick.size, choices=groupChoices(Math.max(n,4)), sug=suggestGroups(Math.max(n,4));
   return `<div class="block"><h2>Ny turnering <span>puljespill og cup etter NDFs bestemmelser</span></h2>
-    <p class="hint">Velg spillerne som er med. Puljene trekkes ikke — de settes etter sesongrankingen. Best rangerte blir førsteseed i pulje A, nest beste i pulje C, tredje i B og fjerde i D når det er fire puljer, slik at de to øverste ligger i hver sin halvdel av cupen. Puljer med tre spillere spiller dobbel serie. Alle går videre til cupspill.</p>
+    <p class="hint">Velg spillerne som er med. Én spiller per pulje seedes etter sesongrankingen — best rangerte i pulje A, nest beste i pulje C, tredje i B og fjerde i D når det er fire puljer, slik at de to øverste ligger i hver sin halvdel av cupen. Resten trekkes tilfeldig. Puljer med tre spillere spiller dobbel serie, og alle går videre til cupspill.</p>
     <div class="panel panel-pad">
       <div>
         <div class="fld"><label>Navn på turneringen</label><input id="tn-name" type="text" placeholder="Klubbkveld" value="Klubbkveld"></div>
@@ -1256,7 +1268,8 @@ function tnSetup(){
 
 function tnRun(){
   const done=allGroupsDone();
-  let h=`<div class="block"><h2>${esc(TN.name)} <span>${esc(TN.date)} · ${Object.keys(TN.names).length} spillere · ${TN.groups.length} ${TN.groups.length===1?'pulje':'puljer'}</span></h2>`;
+  let h=`<div class="block"><h2>${esc(TN.name)} <span>${esc(TN.date)} · ${Object.keys(TN.names).length} spillere · ${TN.groups.length} ${TN.groups.length===1?'pulje':'puljer'}</span></h2>
+    <p class="hint">S-merket viser spilleren som er seedet etter rankingen. Resten er trukket tilfeldig.${!anyPlayed()?' <button class="btn ghost" type="button" data-tn="redraw" style="padding:3px 10px;font-size:13px">Trekk puljene på nytt</button>':''}</p>`;
 
   h+=`<div class="gwrap">`+TN.groups.map((g,gi)=>{
     const t=table(g), tie=t.some(r=>r.tie);
@@ -1267,7 +1280,7 @@ function tnRun(){
       <tbody>${t.map((r,i)=>`<tr>
         <td class="qual ${i===0?'q1':''}">${i+1}</td>
         <td class="nm">${esc(nm(r.k))}${r.tie?' <span class="badge b180">lik</span>':''}</td>
-        <td class="r mono" style="color:var(--faint)">${TN.seedNo[r.k]}</td>
+        <td class="r mono" style="color:var(--brass)" title="${r.k===g.seed?'Seedet etter ranking':''}">${r.k===g.seed?'S'+TN.seedNo[r.k]:''}</td>
         <td class="r mono">${r.w}</td><td class="r mono">${r.l}</td>
         <td class="r mono">${r.lf}–${r.la}</td>
         <td class="r mono" style="font-weight:600">${r.d>0?'+':''}${r.d}</td>
@@ -1379,6 +1392,7 @@ function tnAction(el){
   if(a==='start'){ tnStart(); return; }
   if(a==='reset'){ TN=null; tnSave(); draw(); return; }
   if(a==='buildko'){ buildKO(); draw(); return; }
+  if(a==='redraw'){ if(!anyPlayed()) tnRedraw(); return; }
   if(a==='gres'){
     const g=TN.groups[+el.dataset.g], m=g.matches[+el.dataset.m];
     m.r = +el.dataset.x<0 ? null : [+el.dataset.x,+el.dataset.y];
