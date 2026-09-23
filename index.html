@@ -127,13 +127,16 @@ nav button:focus-visible,.theme-btn:focus-visible,.rowbtn:focus-visible,input:fo
   outline:2px solid var(--bull);outline-offset:2px}
 
 /* ---------- stat strip ---------- */
-.strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);
+.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(152px,1fr));gap:1px;background:var(--line);
   border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-bottom:20px}
 .strip>div{background:var(--surface);padding:12px 14px;min-width:0}
 .strip .k{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
 .strip .v{font-family:'Barlow Condensed',sans-serif;font-size:27px;font-weight:600;line-height:1.05;margin-top:3px;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .strip .s{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.strip .champ{background:var(--brass-wash)}
+.strip .champ .v{color:var(--brass)}
+.strip .champ .k{color:var(--brass)}
 
 /* ---------- generic blocks ---------- */
 .block{margin-bottom:26px}
@@ -310,56 +313,244 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);font-si
    raske legg r:[13,14,15,16,17,18,19,20,21] = antall legg fullført på så mange piler.
    ========================================================================= */
 
-const BASE=[
-  {id:1,n:"Kristoffer Nordbø",p:177,a:13,w:8,m:13,r:[0,0,1,4,8,5,10,9,12],co:[145,113,113,108,106]},
-  {id:2,n:"Frank Cassidy",p:132,a:11,w:4,m:3,r:[0,1,2,2,7,3,5,7,7],co:[126,120,118,108,104]},
-  {id:3,n:"Kjartan Vestre",p:111,a:13,w:1,m:4,r:[0,0,0,0,1,1,4,3,6],co:[]},
-  {id:4,n:"Birger Hervik",p:90,a:13,w:1,m:5,r:[0,0,0,0,0,0,0,1,2],co:[116]},
-  {id:5,n:"Sindre Høines",p:90,a:12,w:0,m:3,r:[0,0,0,1,0,1,0,1,1],co:[112,104]},
-  {id:6,n:"Glenn Hansen",p:78,a:14,w:0,m:1,r:[0,0,0,0,0,1,0,1,5],co:[]},
-  {id:7,n:"Petter Austevik",p:60,a:11,w:1,m:0,r:[0,0,0,0,0,0,0,0,1],co:[]},
-  {id:8,n:"Hans-Fredrik Magnussen",p:48,a:7,w:0,m:1,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:9,n:"Harald Veland",p:48,a:5,w:1,m:4,r:[0,1,1,2,1,0,1,3,2],co:[131,101]},
-  {id:10,n:"Harald Gerhard Veland",p:39,a:9,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:11,n:"Mette Nilsen",p:33,a:8,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[128]},
-  {id:12,n:"Marius Søvik",p:33,a:9,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[120]},
-  {id:13,n:"Arve Kyvik",p:33,a:4,w:1,m:4,r:[0,0,0,0,1,2,1,1,2],co:[]},
-  {id:14,n:"Morten Solstrand",p:18,a:3,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:15,n:"Henry Chau",p:15,a:3,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:16,n:"Ivan Riquelme Sanchez",p:12,a:2,w:0,m:2,r:[0,0,0,0,0,0,1,1,0],co:[]},
-  {id:17,n:"Filip Gyde",p:12,a:3,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:18,n:"Raymond Mortensen",p:9,a:2,w:0,m:0,r:[0,0,0,0,1,0,0,0,0],co:[]},
-  {id:19,n:"Frank Steinsland",p:9,a:1,w:0,m:1,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:20,n:"Pål Skauvik",p:6,a:1,w:0,m:1,r:[0,0,0,0,0,0,0,0,0],co:[117]},
-  {id:21,n:"Lars Askeland",p:6,a:2,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:22,n:"Alex",p:6,a:1,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:23,n:"Cato Henriksen",p:6,a:2,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:24,n:"Rune Vøien",p:6,a:2,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:25,n:"Dagfinn Tyse",p:3,a:1,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:26,n:"Steffen Hammersland",p:3,a:1,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:27,n:"Svend Atle Høie",p:3,a:1,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:28,n:"Luke Sevland-Evans",p:3,a:1,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:29,n:"Barrie Williamson",p:3,a:1,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:30,n:"Sigbjørn",p:3,a:1,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:31,n:"Erlend",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:32,n:"Frode Olsen",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:33,n:"Geir Atle Lye Bårdsen",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:34,n:"Eirik Høyland",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:35,n:"Gunnar Laurhammer",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:36,n:"Jostein Lunde",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:37,n:"Leiv Magne Haukås",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:38,n:"Steinar Barane",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:39,n:"Jan Eirik Nordseth",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:40,n:"Anders Neerland",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:41,n:"Mathias Tjoland",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:42,n:"Leif Abrahamsen",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:43,n:"Sunniva Nyhamn",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:44,n:"Geir Håland",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]},
-  {id:45,n:"Hedda Klakegg",p:0,a:0,w:0,m:0,r:[0,0,0,0,0,0,0,0,0],co:[]}
+const PLAYERS=[
+  {id:1,n:"Kristoffer Nordbø"},
+  {id:2,n:"Frank Cassidy"},
+  {id:3,n:"Kjartan Vestre"},
+  {id:4,n:"Birger Hervik"},
+  {id:5,n:"Sindre Høines"},
+  {id:6,n:"Glenn Hansen"},
+  {id:7,n:"Petter Austevik"},
+  {id:8,n:"Hans-Fredrik Magnussen"},
+  {id:9,n:"Harald Veland"},
+  {id:10,n:"Harald Gerhard Veland"},
+  {id:11,n:"Mette Nilsen"},
+  {id:12,n:"Marius Søvik"},
+  {id:13,n:"Arve Kyvik"},
+  {id:14,n:"Morten Solstrand"},
+  {id:15,n:"Henry Chau"},
+  {id:16,n:"Ivan Riquelme Sanchez"},
+  {id:17,n:"Filip Gyde"},
+  {id:18,n:"Raymond Mortensen"},
+  {id:19,n:"Frank Steinsland"},
+  {id:20,n:"Pål Skauvik"},
+  {id:21,n:"Lars André Askeland"},
+  {id:22,n:"Alex"},
+  {id:23,n:"Cato Henriksen"},
+  {id:24,n:"Rune Vøien"},
+  {id:25,n:"Dagfinn Tyse"},
+  {id:26,n:"Steffen Hammersland"},
+  {id:27,n:"Svend Atle Høie"},
+  {id:28,n:"Luke Sevland-Evans"},
+  {id:29,n:"Barrie Williamson"},
+  {id:30,n:"Sigbjørn"},
+  {id:31,n:"Erlend"},
+  {id:32,n:"Frode Olsen"},
+  {id:33,n:"Geir Atle Lye Bårdsen"},
+  {id:34,n:"Eirik Høyland"},
+  {id:35,n:"Gunnar Laurhammer"},
+  {id:36,n:"Jostein Lunde"},
+  {id:37,n:"Leiv Magne Haukås"},
+  {id:38,n:"Steinar Barane"},
+  {id:39,n:"Jan Eirik Nordseth"},
+  {id:40,n:"Anders Neerland"},
+  {id:41,n:"Mathias Tjoland"},
+  {id:42,n:"Leif Abrahamsen"},
+  {id:43,n:"Sunniva Nyhamn"},
+  {id:44,n:"Geir Håland"},
+  {id:45,n:"Hedda Klakegg"}
 ];
 
 const NIGHTS=[
-  {week:"Uke 16 – 18. april 2026",date:"2026-04-18",res:[
+  {week:"Uke 2 – 7. januar 2026",date:"2026-01-07",final:"Harald Veland – Frank Cassidy 4–2",res:[
+    {id:9,pos:1,m:1,co:[131],r:[0,1,1,1,1,0,0,1,0]},
+    {id:2,pos:2,m:1,co:[104,120],r:[0,0,0,1,0,1,1,0,2]},
+    {id:3,pos:3,r:[0,0,0,0,0,0,0,0,1]},
+    {id:1,pos:4,m:1,r:[0,0,0,0,0,1,2,0,0]},
+    {id:4,pos:5},
+    {id:13,pos:6,r:[0,0,0,0,0,0,0,0,1]},
+    {id:18,pos:7,r:[0,0,0,0,1,0,0,0,0]},
+    {id:6,pos:8},
+    {id:5,pos:9,note:"Vinner av B-finalen"},
+    {id:29,pos:10},
+    {id:8,pos:11},
+    {id:7,pos:12},
+    {id:30,pos:13}
+  ]},
+  {week:"Uke 3 – 14. januar 2026",date:"2026-01-14",final:"Frank Cassidy – Kristoffer Nordbø 4–1",res:[
+    {id:2,pos:1,r:[0,0,0,0,1,1,0,0,1]},
+    {id:1,pos:2,m:1,co:[106,113],r:[0,0,0,0,1,0,0,0,2]},
+    {id:5,pos:3,m:1,r:[0,0,0,1,0,0,0,0,0]},
+    {id:9,pos:4,co:[101],r:[0,0,0,0,0,0,0,1,0]},
+    {id:3,pos:5},
+    {id:16,pos:6,m:1,r:[0,0,0,0,0,0,1,0,0]},
+    {id:14,pos:7},
+    {id:4,pos:8,m:1},
+    {id:7,pos:9},
+    {id:27,pos:10},
+    {id:11,pos:11},
+    {id:10,pos:12},
+    {id:23,pos:13},
+    {id:18,pos:14},
+    {id:6,pos:15},
+    {id:15,pos:16}
+  ]},
+  {week:"Uke 4 – 21. januar 2026",date:"2026-01-21",final:"Kristoffer Nordbø – Arve Kyvik 4–2",res:[
+    {id:1,pos:1,r:[0,0,0,0,1,0,2,0,1]},
+    {id:13,pos:2,m:1,r:[0,0,0,0,0,1,1,1,0]},
+    {id:2,pos:3,r:[0,0,0,0,0,0,0,2,0]},
+    {id:3,pos:4},
+    {id:4,pos:5},
+    {id:6,pos:6,r:[0,0,0,0,0,1,0,0,0]},
+    {id:5,pos:7},
+    {id:7,pos:8},
+    {id:23,pos:9,note:"Vinner av B-finalen"},
+    {id:11,pos:10},
+    {id:10,pos:11},
+    {id:21,pos:12}
+  ]},
+  {week:"Uke 5 – 28. januar 2026",date:"2026-01-28",final:"Kristoffer Nordbø – Frank Cassidy 4–2",res:[
+    {id:1,pos:1,r:[0,0,0,0,0,1,1,0,0]},
+    {id:2,pos:2,r:[0,0,1,0,1,0,2,1,1]},
+    {id:3,pos:3,r:[0,0,0,0,0,0,1,0,0]},
+    {id:5,pos:4},
+    {id:4,pos:5},
+    {id:14,pos:6},
+    {id:16,pos:7,m:1,r:[0,0,0,0,1,0,0,1,0]},
+    {id:15,pos:8},
+    {id:6,pos:9,m:1,r:[0,0,0,0,0,0,0,0,2],note:"Vinner av B-finalen"},
+    {id:21,pos:10},
+    {id:24,pos:11},
+    {id:12,pos:12},
+    {id:17,pos:13}
+  ]},
+  {week:"Uke 6 – 4. februar 2026",date:"2026-02-04",final:"Kristoffer Nordbø – Frank Cassidy 4–2",
+   note:"Kveldens utgang var 119 – ingen klarte den.",res:[
+    {id:1,pos:1,r:[0,0,0,0,1,0,1,2,0]},
+    {id:2,pos:2,m:1,r:[0,0,0,0,0,0,1,1,2]},
+    {id:3,pos:3,m:2,r:[0,0,0,0,0,0,0,0,1]},
+    {id:8,pos:4,m:1},
+    {id:5,pos:5},
+    {id:4,pos:6},
+    {id:12,pos:7},
+    {id:6,pos:8},
+    {id:7,pos:9},
+    {id:11,pos:10}
+  ]},
+  {week:"Uke 7 – 11. februar 2026",date:"2026-02-11",final:"Kristoffer Nordbø – Birger Hervik 4–1",
+   note:"Kveldens utgang var 20 – tatt av Kristoffer og Birger.",res:[
+    {id:1,pos:1,m:2,r:[0,0,0,0,1,0,2,0,2]},
+    {id:4,pos:2,r:[0,0,0,0,0,0,0,0,1]},
+    {id:3,pos:3},
+    {id:5,pos:4},
+    {id:11,pos:5},
+    {id:7,pos:6},
+    {id:2,pos:7,r:[0,0,0,0,0,0,1,0,0]},
+    {id:6,pos:8},
+    {id:12,pos:9},
+    {id:24,pos:10}
+  ]},
+  {week:"Uke 8 – 18. februar 2026",date:"2026-02-18",final:"Frank Cassidy – Kjartan Vestre 4–1",res:[
+    {id:2,pos:1,m:1,r:[0,1,0,0,2,0,0,2,0]},
+    {id:3,pos:2,r:[0,0,0,0,0,0,1,1,0]},
+    {id:5,pos:3,r:[0,0,0,0,0,0,0,1,0]},
+    {id:8,pos:4},
+    {id:6,pos:5},
+    {id:4,pos:6,m:2}
+  ]},
+  {week:"Uke 9 – 25. februar 2026",date:"2026-02-25",final:"Kristoffer Nordbø – Frank Cassidy 4–2",res:[
+    {id:1,pos:1,m:2,co:[113],r:[0,0,1,1,1,0,0,2,0]},
+    {id:2,pos:2,r:[0,0,1,1,1,1,0,1,0]},
+    {id:4,pos:3,m:1},
+    {id:9,pos:4},
+    {id:5,pos:5,co:[112]},
+    {id:10,pos:6},
+    {id:3,pos:7},
+    {id:6,pos:8},
+    {id:12,pos:9},
+    {id:7,pos:10}
+  ]},
+  {week:"Uke 10 – 5. mars 2026",date:"2026-03-05",final:"Kristoffer Nordbø – Kjartan Vestre 4–3",res:[
+    {id:1,pos:1,m:1,r:[0,0,0,0,0,0,0,1,0]},
+    {id:3,pos:2,m:1,r:[0,0,0,0,1,1,1,0,1]},
+    {id:9,pos:3,m:1,r:[0,0,0,1,0,0,0,0,1]},
+    {id:7,pos:4},
+    {id:13,pos:5,m:1},
+    {id:6,pos:6},
+    {id:11,pos:7},
+    {id:20,pos:8,m:1,co:[117]},
+    {id:5,pos:9},
+    {id:4,pos:10,co:[116]},
+    {id:10,pos:11}
+  ]},
+  {week:"Uke 11 – 11. mars 2026",date:"2026-03-11",final:"Frank Cassidy – Kjartan Vestre 3–2",res:[
+    {id:2,pos:1,r:[0,0,0,0,0,0,0,0,1]},
+    {id:3,pos:2,co:[114],r:[0,0,0,0,0,0,0,0,2]},
+    {id:1,pos:3,co:[108],r:[0,0,0,0,0,1,0,2,2]},
+    {id:5,pos:4,m:1,r:[0,0,0,0,0,1,0,0,0]},
+    {id:11,pos:5},
+    {id:4,pos:6,r:[0,0,0,0,0,0,0,0,1]},
+    {id:10,pos:7},
+    {id:6,pos:8,r:[0,0,0,0,0,0,0,0,1]},
+    {id:17,pos:9},
+    {id:12,pos:10},
+    {id:7,pos:11}
+  ]},
+  {week:"Uke 12 – 18. mars 2026",date:"2026-03-18",final:"Frank Cassidy – Kristoffer Nordbø 4–1",res:[
+    {id:2,pos:1,co:[126],r:[0,0,0,0,2,0,0,0,0]},
+    {id:1,pos:2,m:1,r:[0,0,0,0,0,1,1,2,0]},
+    {id:13,pos:3,m:2,co:[114],r:[0,0,0,0,1,1,0,0,1]},
+    {id:19,pos:4,m:1,r:[0,0,0,0,0,0,1,0,1]},
+    {id:8,pos:5},
+    {id:6,pos:6},
+    {id:10,pos:7},
+    {id:4,pos:8},
+    {id:3,pos:9,note:"Vinner i B-puljen"},
+    {id:11,pos:10},
+    {id:7,pos:11},
+    {id:12,pos:12},
+    {id:26,pos:13}
+  ]},
+  {week:"Uke 13 – 25. mars 2026",date:"2026-03-25",final:"Kristoffer Nordbø – Petter Austevik 4–1",res:[
+    {id:1,pos:1,m:2,r:[0,0,0,2,1,0,0,0,1]},
+    {id:7,pos:2},
+    {id:3,pos:3,m:1,r:[0,0,0,0,0,0,0,2,1]},
+    {id:4,pos:4,m:1},
+    {id:14,pos:5},
+    {id:5,pos:6,co:[104]},
+    {id:8,pos:7},
+    {id:6,pos:8},
+    {id:10,pos:9},
+    {id:11,pos:10,co:[128]},
+    {id:12,pos:11,co:[120]}
+  ]},
+  {week:"Uke 14 – 1. april 2026",date:"2026-04-01",final:"Kristoffer Nordbø – Hans-Fredrik Magnussen 4–0",res:[
+    {id:1,pos:1,m:1,co:[145],r:[0,0,0,0,1,1,0,0,1]},
+    {id:8,pos:2},
+    {id:6,pos:3,r:[0,0,0,0,0,0,0,0,1]},
+    {id:4,pos:4,r:[0,0,0,0,0,0,0,1,0]},
+    {id:17,pos:5},
+    {id:10,pos:6},
+    {id:15,pos:7},
+    {id:12,pos:8}
+  ]},
+  {week:"Uke 15 – 8. april 2026",date:"2026-04-08",final:"Kristoffer Nordbø – Sindre Høines 4–3",res:[
+    {id:1,pos:1,m:2,r:[0,0,0,1,1,0,1,0,3]},
+    {id:5,pos:2,m:1,r:[0,0,0,0,0,0,0,0,1]},
+    {id:7,pos:3,r:[0,0,0,0,0,0,0,0,1]},
+    {id:2,pos:4,co:[108,118]},
+    {id:3,pos:5,r:[0,0,0,0,0,0,1,0,0]},
+    {id:22,pos:6},
+    {id:9,pos:7,m:2,r:[0,0,0,0,0,0,1,1,1]},
+    {id:4,pos:8},
+    {id:6,pos:9,r:[0,0,0,0,0,0,0,1,1],note:"Vinner av B-finalen"},
+    {id:25,pos:10},
+    {id:10,pos:11},
+    {id:8,pos:12},
+    {id:12,pos:13},
+    {id:28,pos:14}
+  ]},
+  {week:"Uke 16 – 15. april 2026",date:"2026-04-15",final:"Kjartan Vestre – Glenn Hansen 3–1",res:[
     {id:3,pos:1,r:[0,0,0,1,0,0,0,1,0]},
     {id:6,pos:2,r:[0,0,0,0,0,0,0,0,1]},
     {id:5,pos:3},
@@ -368,7 +559,7 @@ const NIGHTS=[
     {id:10,pos:6},
     {id:4,pos:7}
   ]},
-  {week:"Uke 17 – 23. april 2026",date:"2026-04-23",res:[
+  {week:"Uke 17 – 22. april 2026",date:"2026-04-22",final:"Harald Veland – Frank Cassidy 4–2",res:[
     {id:9,pos:1,m:1,co:[104],r:[0,0,0,1,2,1,0,2,1]},
     {id:2,pos:2,m:1,r:[0,0,0,0,1,0,0,0,1]},
     {id:3,pos:3,co:[103],r:[0,0,0,0,0,1,0,0,1]},
@@ -377,12 +568,12 @@ const NIGHTS=[
     {id:5,pos:6,co:[125]},
     {id:4,pos:7},
     {id:11,pos:8},
-    {id:6,pos:9,r:[0,0,0,0,0,0,0,1,1]},
+    {id:6,pos:9,r:[0,0,0,0,0,0,0,1,1],note:"Vinner av B-finalen"},
     {id:10,pos:10},
     {id:12,pos:11},
     {id:26,pos:12}
   ]},
-  {week:"Uke 18 – 30. april 2026",date:"2026-04-30",res:[
+  {week:"Uke 18 – 29. april 2026",date:"2026-04-29",res:[
     {id:16,pos:1,m:1,co:[104],r:[0,1,0,0,1,1,1,1,0]},
     {id:5,pos:2,r:[0,0,0,0,0,0,1,0,0]},
     {id:3,pos:3,r:[0,0,0,0,0,0,1,2,0]},
@@ -395,7 +586,7 @@ const NIGHTS=[
     {id:31,pos:10},
     {id:11,pos:11}
   ]},
-  {week:"Uke 19 – 7. mai 2026",date:"2026-05-07",res:[
+  {week:"Uke 19 – 6. mai 2026",date:"2026-05-06",final:"Kjartan Vestre – Ivan Riquelme Sanchez 4–1",res:[
     {id:3,pos:1,m:3,co:[139],r:[0,0,0,1,0,1,0,0,2]},
     {id:16,pos:2,m:1,r:[0,0,0,0,0,0,2,0,0]},
     {id:5,pos:3},
@@ -404,11 +595,11 @@ const NIGHTS=[
     {id:6,pos:6,r:[0,0,0,0,0,0,0,0,2]},
     {id:7,pos:7,r:[0,0,0,0,0,0,0,1,0]},
     {id:4,pos:8},
-    {id:12,pos:9},
+    {id:12,pos:9,note:"Vinner av B-finalen"},
     {id:11,pos:10},
     {id:10,pos:11}
   ]},
-  {week:"Uke 20 – 14. mai 2026",date:"2026-05-14",res:[
+  {week:"Uke 20 – 13. mai 2026",date:"2026-05-13",final:"Harald Veland – Ivan Riquelme Sanchez 4–3",res:[
     {id:9,pos:1,r:[0,0,0,0,1,1,1,2,0]},
     {id:16,pos:2,m:1,co:[140],r:[0,0,0,0,1,0,0,0,1]},
     {id:32,pos:3},
@@ -427,7 +618,7 @@ const NIGHTS=[
     {id:14,pos:16},
     {id:37,pos:17}
   ]},
-  {week:"Uke 21 – 21. mai 2026",date:"2026-05-21",res:[
+  {week:"Uke 21 – 20. mai 2026",date:"2026-05-20",final:"Raymond Mortensen – Kjartan Vestre 4–3",res:[
     {id:18,pos:1,m:1,co:[104],r:[0,0,0,0,0,0,1,0,0]},
     {id:3,pos:2,m:2,r:[0,0,0,0,0,0,1,0,0]},
     {id:16,pos:3,m:1,r:[0,0,0,0,0,0,0,1,0]},
@@ -439,7 +630,7 @@ const NIGHTS=[
     {id:7,pos:9},
     {id:11,pos:10}
   ]},
-  {week:"Uke 22 – 28. mai 2026",date:"2026-05-28",res:[
+  {week:"Uke 22 – 27. mai 2026",date:"2026-05-27",final:"Arve Kyvik – Kjartan Vestre 4–0",res:[
     {id:13,pos:1},
     {id:3,pos:2,m:1,r:[0,0,0,0,0,0,1,2,1]},
     {id:38,pos:3,co:[107]},
@@ -450,7 +641,7 @@ const NIGHTS=[
     {id:5,pos:8},
     {id:12,pos:9}
   ]},
-  {week:"Uke 23 – 4. juni 2026",date:"2026-06-04",res:[
+  {week:"Uke 23 – 3. juni 2026",date:"2026-06-03",final:"Jan Eirik Nordseth – Frank Steinsland 4–1",res:[
     {id:39,pos:1,m:1,co:[112,140],r:[0,0,1,1,1,3,1,0,1]},
     {id:19,pos:2,m:3,co:[131],r:[0,0,0,0,0,1,0,1,0]},
     {id:3,pos:3,m:1,co:[154],r:[0,0,0,0,1,0,0,0,0]},
@@ -459,11 +650,11 @@ const NIGHTS=[
     {id:14,pos:6,co:[108,117],r:[0,0,0,0,0,0,0,0,1]},
     {id:4,pos:7},
     {id:5,pos:8},
-    {id:7,pos:9},
+    {id:7,pos:9,note:"Vinner av B-finalen"},
     {id:10,pos:10},
     {id:40,pos:11}
   ]},
-  {week:"Uke 24 – 11. juni 2026",date:"2026-06-11",res:[
+  {week:"Uke 24 – 10. juni 2026",date:"2026-06-10",final:"Kristoffer Nordbø – Kjartan Vestre 4–2",res:[
     {id:1,pos:1,co:[157],r:[0,0,0,0,0,0,0,1,1]},
     {id:3,pos:2,co:[141],r:[0,0,1,0,0,1,2,1,1]},
     {id:8,pos:3,r:[0,0,0,0,0,0,1,0,0]},
@@ -473,7 +664,7 @@ const NIGHTS=[
     {id:5,pos:7},
     {id:4,pos:8}
   ]},
-  {week:"Uke 25 – 18. juni 2026",date:"2026-06-18",res:[
+  {week:"Uke 25 – 17. juni 2026",date:"2026-06-17",final:"Kristoffer Nordbø – Harald Veland 4–0",res:[
     {id:1,pos:1,co:[118],r:[0,0,0,0,0,0,0,0,2]},
     {id:9,pos:2,r:[0,0,0,0,0,0,0,1,0]},
     {id:8,pos:3},
@@ -482,32 +673,33 @@ const NIGHTS=[
     {id:6,pos:6},
     {id:10,pos:7},
     {id:12,pos:8},
-    {id:3,pos:9},
+    {id:3,pos:9,note:"Vinner av B-finalen"},
     {id:4,pos:10,m:1}
   ]},
-  {week:"Kveld 11",final:"Frank Cassidy – Kjartan Vestre 4–3",res:[
-    {id:2,pos:1,r:[0,0,0,0,0,1,1,0,0]},
-    {id:3,pos:2,m:2,r:[0,0,0,1,0,2,1,0,0]},
-    {id:16,pos:3,r:[0,0,0,0,0,0,1,0,0]},
-    {id:4,pos:4},
-    {id:8,pos:5},
-    {id:10,pos:6},
-    {id:19,pos:7,m:1,r:[0,0,0,0,0,0,1,0,1]},
+  {week:"Uke 26 – 24. juni 2026",date:"2026-06-24",final:"Kjartan Vestre – Hans-Fredrik Magnussen 4–2",res:[
+    {id:3,pos:1,co:[115],r:[0,0,0,1,0,0,1,0,4]},
+    {id:8,pos:2,r:[0,0,0,0,0,0,0,0,1]},
+    {id:41,pos:3,m:1,co:[110,108]},
+    {id:1,pos:4,r:[0,0,0,0,1,0,1,0,0]},
+    {id:5,pos:5},
+    {id:6,pos:6,r:[0,0,0,0,0,0,0,0,1]},
+    {id:4,pos:7,co:[126]},
     {id:12,pos:8},
-    {id:11,pos:9}
+    {id:7,pos:9,note:"Vinner av B-finalen"},
+    {id:10,pos:10},
+    {id:11,pos:11}
   ]},
-  {week:"Kveld 12",final:"Kjartan Vestre – Frank Steinsland 4–2",res:[
-    {id:3,pos:1,m:1,r:[0,0,0,0,0,0,0,2,0]},
-    {id:19,pos:2,m:1,r:[0,0,0,0,0,0,2,0,0]},
-    {id:4,pos:3},
-    {id:2,pos:4,m:1,r:[0,0,0,0,0,0,1,1,0]},
-    {id:8,pos:5},
-    {id:5,pos:6},
-    {id:11,pos:7},
-    {id:6,pos:8,r:[0,0,0,0,0,0,0,0,1]},
-    {id:10,pos:9,co:[113]}
+  {week:"Uke 32 – 5. august 2026",date:"2026-08-05",final:"Kristoffer Nordbø – Harald Veland 4–1",res:[
+    {id:1,pos:1,m:1,r:[0,0,0,1,1,1,0,2,0]},
+    {id:9,pos:2,m:1,r:[0,0,0,0,1,0,1,0,0]},
+    {id:41,pos:3,co:[101],r:[0,0,0,1,0,0,0,0,2]},
+    {id:4,pos:4},
+    {id:5,pos:5},
+    {id:11,pos:6},
+    {id:6,pos:7,co:[138],r:[0,0,0,0,0,0,0,0,1]},
+    {id:3,pos:8,m:1}
   ]},
-  {week:"Kveld 13",final:"Kristoffer Nordbø – Arve Kyvik 4–2",res:[
+  {week:"Uke 33 – 12. august 2026",date:"2026-08-12",final:"Kristoffer Nordbø – Arve Kyvik 4–2",res:[
     {id:1,pos:1,m:1,co:[150],r:[0,0,0,1,0,1,0,1,2]},
     {id:13,pos:2,r:[0,0,0,0,0,0,0,1,2]},
     {id:6,pos:3,r:[0,0,0,0,0,0,0,1,0]},
@@ -525,30 +717,29 @@ const NIGHTS=[
     {id:12,pos:15},
     {id:45,pos:16}
   ]},
-  {week:"Kveld 14",final:"Kristoffer Nordbø – Harald Veland 4–1",res:[
-    {id:1,pos:1,m:1,r:[0,0,0,1,1,1,0,2,0]},
-    {id:9,pos:2,m:1,r:[0,0,0,0,1,0,1,0,0]},
-    {id:41,pos:3,co:[101],r:[0,0,0,1,0,0,0,0,2]},
+  {week:"Uke 34 – 18. august 2026",date:"2026-08-18",final:"Kjartan Vestre – Frank Steinsland 4–2",res:[
+    {id:3,pos:1,m:1,r:[0,0,0,0,0,0,0,2,0]},
+    {id:19,pos:2,m:1,r:[0,0,0,0,0,0,2,0,0]},
+    {id:4,pos:3},
+    {id:2,pos:4,m:1,r:[0,0,0,0,0,0,1,1,0]},
+    {id:8,pos:5},
+    {id:5,pos:6},
+    {id:11,pos:7},
+    {id:6,pos:8,r:[0,0,0,0,0,0,0,0,1]},
+    {id:10,pos:9,co:[113]}
+  ]},
+  {week:"Klubbkveld – dato mangler",date:"2026-08-26",final:"Frank Cassidy – Kjartan Vestre 4–3",res:[
+    {id:2,pos:1,r:[0,0,0,0,0,1,1,0,0]},
+    {id:3,pos:2,m:2,r:[0,0,0,1,0,2,1,0,0]},
+    {id:16,pos:3,r:[0,0,0,0,0,0,1,0,0]},
     {id:4,pos:4},
-    {id:5,pos:5},
-    {id:11,pos:6},
-    {id:6,pos:7,co:[138],r:[0,0,0,0,0,0,0,0,1]},
-    {id:3,pos:8,m:1}
-  ]},
-  {week:"Kveld 15",final:"Kjartan Vestre – Hans-Fredrik Magnussen 4–2",res:[
-    {id:3,pos:1,co:[115],r:[0,0,0,1,0,0,1,0,4]},
-    {id:8,pos:2,r:[0,0,0,0,0,0,0,0,1]},
-    {id:41,pos:3,m:1,co:[110,108]},
-    {id:1,pos:4,r:[0,0,0,0,1,0,1,0,0]},
-    {id:5,pos:5},
-    {id:6,pos:6,r:[0,0,0,0,0,0,0,0,1]},
-    {id:4,pos:7,co:[126]},
+    {id:8,pos:5},
+    {id:10,pos:6},
+    {id:19,pos:7,m:1,r:[0,0,0,0,0,0,1,0,1]},
     {id:12,pos:8},
-    {id:7,pos:9,note:"Vinner av B-finalen"},
-    {id:10,pos:10},
-    {id:11,pos:11}
+    {id:11,pos:9}
   ]},
-  {week:"Kveld 16",res:[
+  {week:"Klubbkveld – dato mangler",date:"2026-09-09",res:[
     {id:3,pos:1,co:[113],r:[0,0,0,0,1,0,1,3,0]},
     {id:6,pos:2,r:[0,0,0,0,0,0,0,0,2]},
     {id:4,pos:3,m:1,r:[0,0,0,0,0,0,0,1,0]},
@@ -556,7 +747,7 @@ const NIGHTS=[
     {id:7,pos:5,r:[0,0,0,0,0,0,0,1,1]},
     {id:5,pos:6,m:1}
   ]},
-  {week:"Kveld 17 – 16. september 2026",date:"2026-09-16",final:"Kjartan Vestre – Sindre Høines 4–0",res:[
+  {week:"Uke 38 – 16. september 2026",date:"2026-09-16",final:"Kjartan Vestre – Sindre Høines 4–0",res:[
     {id:3,pos:1,m:1,r:[0,0,0,1,0,0,2,1,0]},
     {id:5,pos:2},
     {id:6,pos:3,r:[0,0,0,0,0,0,1,1,2]},
@@ -571,7 +762,10 @@ const NIGHTS=[
 ];
 
 /* Dato som vises nederst på siden – oppdater sammen med ny kveld. */
-const UPDATED="23. september 2026";
+const UPDATED="23. september 2026 · hele sesongen ført kveld for kveld";
+
+/* Klubbmesterskapet teller ikke i rankingen, men mesteren vises ved siden av lederen. */
+const CHAMP={navn:"Frank Cassidy",dato:"17. januar 2026"};
 
 /* ---------- poengstige ---------- */
 const LADDER=[
@@ -594,9 +788,9 @@ const CO_BANDS=[
 ];
 
 const P={};
-BASE.forEach(b=>{
-  P[b.id]={id:b.id,name:b.n,pts:b.p,att:b.a,wins:b.w,max:b.m,
-    raske:b.r.slice(),co:b.co.slice(),nights:[]};
+PLAYERS.forEach(b=>{
+  P[b.id]={id:b.id,name:b.n,pts:0,att:0,wins:0,max:0,
+    raske:[0,0,0,0,0,0,0,0,0],co:[],nights:[]};
 });
 NIGHTS.forEach((night,ni)=>{
   night.res.forEach(r=>{
@@ -682,7 +876,7 @@ const VIEWS=[
 
 function strip(items){
   return `<div class="strip">${items.map(i=>
-    `<div><div class="k">${i.k}</div><div class="v">${i.v}</div>${i.s?`<div class="s">${i.s}</div>`:''}</div>`
+    `<div${i.c?` class="${i.c}"`:''}><div class="k">${i.k}</div><div class="v">${i.v}</div>${i.s?`<div class="s">${i.s}</div>`:''}</div>`
   ).join('')}</div>`;
 }
 function barList(rows,max,cls){
@@ -703,6 +897,7 @@ let openId=null, query='';
 function vRank(){
   return strip([
     {k:'Leder',v:esc(first(T.leader.name)),s:`${T.leader.pts} poeng · ${T.leader.wins} seire`},
+    {k:'Klubbmester 2026',v:esc(first(CHAMP.navn)),s:esc(CHAMP.navn),c:'champ'},
     {k:'Spillere',v:T.players,s:`${T.att} oppmøter til sammen`},
     {k:'180ere',v:T.max,s:`${T.rl} raske legg`},
     {k:'Høyeste utgang',v:T.bestCo?T.bestCo.best:'–',s:T.bestCo?esc(T.bestCo.name):''}
@@ -954,7 +1149,7 @@ function vRec(){
   const mW=best(ALL,p=>p.wins);
   add('Flest kveldsseire',mW.wins,mW.name,'i sesongen');
   const mA=best(ALL,p=>p.att);
-  add('Flest oppmøter',mA.att,mA.name,`av ${NIGHTS.length}+ kvelder`);
+  add('Flest oppmøter',mA.att,mA.name,`av ${NIGHTS.length} klubbkvelder`);
   const mC=best(ALL.filter(p=>p.co.length),p=>p.co.length);
   if(mC) add('Flest utganger over 100',mC.co.length,mC.name,'i sesongen');
   const qual=ALL.filter(p=>p.att>=MIN_ATT);
@@ -999,7 +1194,7 @@ function vRec(){
   if(sAtt.v>1) add('Lengste oppmøterekke',sAtt.v+' kvelder',P[sAtt.k].name,'på rad i loggen');
 
   return `<div class="block"><h2>Rekorder <span>sesong 2026</span></h2>
-    <p class="hint">Sesongtotalene dekker hele året. Kveldsrekordene og rekkene bygger på de ${NIGHTS.length} kveldene som ligger i loggen — tall fra kvelder før loggen startet er med i totalene, men kan ikke knyttes til en enkelt kveld.</p>
+    <p class="hint">Alle ${NIGHTS.length} klubbkveldene i sesongen ligger i loggen, så hver rekord kan knyttes til kvelden den ble satt. Klubbmesterskapet og sommerturneringen er egne arrangementer og teller ikke.</p>
     <div class="recs">${recs.map(r=>`
       <div class="rec${r.star?' star':''}">
         <div class="rl">${r.l}</div>
