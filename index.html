@@ -832,7 +832,8 @@ ALL.forEach(p=>{
   p.bestLeg=p.raske.findIndex(v=>v>0);
   p.bestLeg=p.bestLeg<0?null:DARTS[p.bestLeg];
 });
-const RANKED=[...ALL].sort((a,b)=>b.pts-a.pts||b.wins-a.wins||b.max-a.max||a.name.localeCompare(b.name,'nb'));
+// Ved lik poengsum avgjør snitt per kveld, deretter seire og 180ere.
+const RANKED=[...ALL].sort((a,b)=>b.pts-a.pts||b.avg-a.avg||b.wins-a.wins||b.max-a.max||a.name.localeCompare(b.name,'nb'));
 RANKED.forEach((p,i)=>p.rank=i+1);
 
 const T={
@@ -923,6 +924,7 @@ function vRank(){
     {k:'Høyeste utgang',v:T.bestCo?T.bestCo.best:'–',s:T.bestCo?esc(T.bestCo.name):''}
   ])+
   `<div class="block"><h2>Sammenlagt <span>trykk på en spiller for detaljer</span></h2>
+    <p class="hint">Ved lik poengsum rangeres den med best snitt per kveld øverst.</p>
     <input class="q" id="q" type="search" placeholder="Søk spiller…" value="${esc(query)}" autocomplete="off">
     <div class="board" id="board">${boardRows()}</div></div>`+
   ladderBlock();
