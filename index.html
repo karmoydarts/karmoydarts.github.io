@@ -185,7 +185,7 @@ input.q::placeholder{color:var(--faint)}
 
 /* expanded detail */
 .detail{border:1px solid var(--line);border-radius:var(--radius);
-  background:var(--raised);padding:14px;margin:2px 0 10px;display:grid;gap:14px;
+  background:var(--raised);padding:14px;margin:2px 0 22px;display:grid;gap:14px;
   grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
 .dcol h4{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;text-transform:uppercase;
   letter-spacing:.1em;color:var(--muted);margin:0 0 7px}
@@ -197,6 +197,63 @@ input.q::placeholder{color:var(--faint)}
   background:var(--surface);border:1px solid var(--line);color:var(--text-2)}
 .chip.hi{background:var(--bull-wash);border-color:transparent;color:var(--bull-ink);font-weight:500}
 .empty{font-size:13px;color:var(--faint)}
+
+/* ---------- sesongvelger ---------- */
+.seasons{display:flex;gap:4px;align-items:center}
+.seasons button{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;font-weight:500;letter-spacing:.04em;
+  padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer}
+.seasons button:hover{color:var(--text);border-color:var(--text-2)}
+.seasons button[aria-pressed="true"]{background:var(--text);border-color:var(--text);color:var(--ground)}
+.seasons button:focus-visible{outline:2px solid var(--bull);outline-offset:2px}
+
+/* ---------- plassering, medalje og bevegelse ---------- */
+.posw{display:flex;flex-direction:column;align-items:center;gap:3px;min-width:0}
+.medal{width:27px;height:27px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;line-height:1;border:2px solid}
+.p1 .medal{background:var(--brass-wash);border-color:var(--brass);color:var(--brass)}
+.p2 .medal{background:var(--line-soft);border-color:var(--faint);color:var(--text-2)}
+.p3 .medal{background:var(--bull-wash);border-color:var(--bull);color:var(--bull-ink)}
+.mv{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:10px;font-weight:600;line-height:1;white-space:nowrap}
+.mv.up{color:var(--wire-ink)}
+.mv.down{color:var(--bull-ink)}
+.mv.same{color:var(--faint)}
+.mv.new{font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- spillerlenke ---------- */
+.plink{display:inline;background:none;border:none;padding:0;margin:0;font:inherit;color:inherit;cursor:pointer;
+  border-bottom:1px dotted var(--faint);max-width:100%}
+.plink:hover{color:var(--bull);border-bottom-color:var(--bull)}
+.plink:focus-visible{outline:2px solid var(--bull);outline-offset:2px}
+
+/* ---------- spillerprofil ---------- */
+.back{background:none;border:1px solid var(--line);color:var(--muted);border-radius:99px;
+  padding:6px 14px;font:inherit;font-size:12px;font-weight:600;cursor:pointer;margin-bottom:16px}
+.back:hover{color:var(--text);border-color:var(--text-2)}
+.back:focus-visible{outline:2px solid var(--bull);outline-offset:2px}
+.phead{display:flex;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:18px;
+  padding-bottom:15px;border-bottom:2px solid var(--text)}
+.pring{width:58px;height:58px;border-radius:50%;flex:0 0 auto;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;border:2px solid var(--line);background:var(--surface)}
+.pring b{font-family:'Barlow Condensed',sans-serif;font-size:26px;line-height:.85;font-weight:700}
+.pring i{font-style:normal;font-size:8px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.pring.g1{border-color:var(--brass);background:var(--brass-wash)}
+.pring.g1 b{color:var(--brass)}
+.pring.g2{border-color:var(--faint)}
+.pring.g3{border-color:var(--bull);background:var(--bull-wash)}
+.pring.g3 b{color:var(--bull-ink)}
+.pid{flex:1 1 200px;min-width:0}
+.pid h2{font-size:29px;text-transform:uppercase;letter-spacing:.01em;line-height:1}
+.psub{font-size:13px;color:var(--muted);margin-top:4px}
+.sparkbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px}
+.spark{width:100%;height:auto;display:block;margin:6px 0 2px;overflow:visible}
+.sparklab{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);
+  font-family:'IBM Plex Mono',ui-monospace,monospace}
+.finrow{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:baseline;padding:7px 0;
+  border-bottom:1px dotted var(--line);font-size:14px}
+.finrow:last-child{border-bottom:none}
+.finrow .fw{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:4px}
+.finrow .fw.won{background:var(--brass-wash);color:var(--brass)}
+.finrow .fw.lost{background:var(--line-soft);color:var(--muted)}
 
 /* ---------- bar list ---------- */
 .bars{display:flex;flex-direction:column;gap:7px}
@@ -291,10 +348,14 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);font-si
   .wrap{padding:20px 14px 48px}
   .top-id h1{font-size:26px}
   .strip{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .rowbtn{grid-template-columns:30px 1fr auto;gap:9px;padding:10px}
+  .rowbtn{grid-template-columns:32px 1fr auto;gap:9px;padding:10px}
+  .medal{width:24px;height:24px;font-size:15px}
+  .phead{gap:12px}
+  .pid h2{font-size:23px}
+  .pring{width:50px;height:50px}
+  .pring b{font-size:22px}
   .score .pts{font-size:25px}
   .bar{grid-template-columns:minmax(70px,110px) 1fr 38px}
-  .detail{margin-top:-7px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -317,7 +378,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);font-si
   <div id="views"></div>
 
   <footer>
-    Klubbranking for Karmøy Darts Club · sesong 2026 · 501 double out.
+    Klubbranking for Karmøy Darts Club · <span id="fseason"></span> · 501 double out.
     Poeng etter plassering hver klubbkveld: 15 / 12 / 9 / 6 / 3.
     <span id="updated"></span>
   </footer>
@@ -783,8 +844,9 @@ const NIGHTS=[
 /* Dato som vises nederst på siden – oppdater sammen med ny kveld. */
 const UPDATED="23. september 2026 · hele sesongen ført kveld for kveld";
 
-/* Klubbmesterskapet teller ikke i rankingen, men mesteren vises ved siden av lederen. */
-const CHAMP={navn:"Frank Cassidy",dato:"17. januar 2026"};
+/* Klubbmesterskapet teller ikke i rankingen, men mesteren vises ved siden av lederen.
+   Nøkkelen er sesongen, slik at arkiverte sesonger beholder sin egen mester. */
+const CHAMPS={2026:{navn:"Frank Cassidy",dato:"17. januar 2026"}};
 
 /* ---------- poengstige ---------- */
 const LADDER=[
@@ -806,46 +868,95 @@ const CO_BANDS=[
   {t:"170",lo:168,hi:180}
 ];
 
-const P={};
-PLAYERS.forEach(b=>{
-  P[b.id]={id:b.id,name:b.n,pts:0,att:0,wins:0,max:0,
-    raske:[0,0,0,0,0,0,0,0,0],co:[],nights:[]};
-});
-NIGHTS.forEach((night,ni)=>{
-  night.res.forEach(r=>{
-    const p=P[r.id]; if(!p) return;
-    const g=points(r.pos);
-    p.pts+=g; p.att++; if(r.pos===1)p.wins++;
-    p.max+=r.m||0;
-    if(r.r) r.r.forEach((v,i)=>p.raske[i]+=v);
-    if(r.co) r.co.forEach(v=>p.co.push(v));
-    p.nights.push({ni,week:night.week,pos:r.pos,gain:g,field:night.res.length,
-      max:r.m||0,co:r.co||[],raske:r.r||null});
-  });
-});
-const ALL=Object.values(P);
-ALL.forEach(p=>{
-  p.rl=p.raske.reduce((a,v)=>a+v,0);
-  p.co.sort((a,b)=>b-a);
-  p.best=p.co.length?p.co[0]:0;
-  p.avg=p.att?p.pts/p.att:0;
-  p.bestLeg=p.raske.findIndex(v=>v>0);
-  p.bestLeg=p.bestLeg<0?null:DARTS[p.bestLeg];
-});
-// Ved lik poengsum avgjør snitt per kveld, deretter seire og 180ere.
-const RANKED=[...ALL].sort((a,b)=>b.pts-a.pts||b.avg-a.avg||b.wins-a.wins||b.max-a.max||a.name.localeCompare(b.name,'nb'));
-RANKED.forEach((p,i)=>p.rank=i+1);
+/* ---------- sesonger ----------
+   Sesongen utledes av datoen på hver kveld. Når 2027 starter dukker den opp
+   som en ny knapp i toppen, og 2026 blir liggende som arkiv med sine egne tall. */
+const seasonOf=iso=>Number(String(iso).slice(0,4));
+const SEASONS=[...new Set(NIGHTS.map(n=>seasonOf(n.date)))].sort((a,b)=>b-a);
+let SEASON=SEASONS[0];
 
-const T={
-  players:ALL.length,
-  nights:NIGHTS.length,
-  max:ALL.reduce((a,p)=>a+p.max,0),
-  rl:ALL.reduce((a,p)=>a+p.rl,0),
-  co:ALL.reduce((a,p)=>a+p.co.length,0),
-  att:ALL.reduce((a,p)=>a+p.att,0)
-};
-T.bestCo=ALL.filter(p=>p.best).sort((a,b)=>b.best-a.best)[0]||null;
-T.leader=RANKED[0];
+const NAME={};PLAYERS.forEach(b=>{NAME[b.id]=b.n;});
+
+/* Ved lik poengsum avgjør snitt per kveld, deretter seire og 180ere. */
+const CMP=(a,b)=>b.pts-a.pts||b.avg-a.avg||b.wins-a.wins||b.max-a.max||a.name.localeCompare(b.name,'nb');
+
+/* Hvem sto i finalen? Navnet må stå i finalestrengen. Er navnet en del av et
+   lengre navn som også står der, lukes det bort så vi ikke får falske treff. */
+function finalists(str){
+  if(!str) return [];
+  const hit=PLAYERS.filter(b=>str.indexOf(b.n)>=0);
+  return hit.filter(b=>!hit.some(o=>o.id!==b.id&&o.n!==b.n&&o.n.indexOf(b.n)>=0)).map(b=>b.id);
+}
+
+/* Bygger spillertall fra en liste kvelder. Kalles både for hele sesongen og
+   for sesongen fram til og med hver enkelt kveld (til plasseringskurven). */
+function tally(nights){
+  const m={};
+  nights.forEach(night=>{
+    const fin=finalists(night.final);
+    night.res.forEach(r=>{
+      if(!NAME[r.id]) return;
+      const p=m[r.id]||(m[r.id]={id:r.id,name:NAME[r.id],pts:0,att:0,wins:0,max:0,
+        raske:[0,0,0,0,0,0,0,0,0],co:[],nights:[],finals:[]});
+      const g=points(r.pos);
+      p.pts+=g; p.att++; if(r.pos===1)p.wins++;
+      p.max+=r.m||0;
+      if(r.r) r.r.forEach((v,i)=>p.raske[i]+=v);
+      if(r.co) r.co.forEach(v=>p.co.push(v));
+      p.nights.push({week:night.week,date:night.date,pos:r.pos,gain:g,field:night.res.length,
+        max:r.m||0,co:r.co||[],rl:(r.r||[]).reduce((a,v)=>a+v,0)});
+      if(fin.indexOf(r.id)>=0) p.finals.push({week:night.week,text:night.final,won:r.pos===1});
+    });
+  });
+  const all=Object.values(m);
+  all.forEach(p=>{
+    p.rl=p.raske.reduce((a,v)=>a+v,0);
+    p.co.sort((a,b)=>b-a);
+    p.best=p.co.length?p.co[0]:0;
+    p.avg=p.att?p.pts/p.att:0;
+    const i=p.raske.findIndex(v=>v>0);
+    p.bestLeg=i<0?null:DARTS[i];
+    p.bestPos=p.nights.length?p.nights.reduce((a,n)=>Math.min(a,n.pos),99):null;
+  });
+  return all;
+}
+
+/* ---------- avledet tilstand for valgt sesong ---------- */
+let P,ALL,RANKED,T,SN,STR,CHAMP,HIST;
+function rebuild(){
+  SN=NIGHTS.filter(n=>seasonOf(n.date)===SEASON);
+  STR=TOURNAMENTS.filter(t=>seasonOf(t.iso)===SEASON);
+  ALL=tally(SN);
+  P={}; ALL.forEach(p=>{P[p.id]=p;});
+  RANKED=[...ALL].sort(CMP);
+  RANKED.forEach((p,i)=>{p.rank=i+1;});
+
+  /* plasseringen etter hver kveld – gir både kurven i profilen og pilene i rankingen */
+  HIST=[];
+  for(let i=1;i<=SN.length;i++){
+    const r=tally(SN.slice(0,i)).sort(CMP);
+    const m={}; r.forEach((p,j)=>{m[p.id]=j+1;});
+    HIST.push({week:SN[i-1].week,date:SN[i-1].date,rank:m});
+  }
+  const prev=HIST.length>1?HIST[HIST.length-2].rank:null;
+  ALL.forEach(p=>{
+    p.prev=prev?(prev[p.id]||null):null;
+    p.mv=p.prev==null?null:p.prev-p.rank;
+  });
+
+  CHAMP=CHAMPS[SEASON]||null;
+  T={
+    players:ALL.length,
+    nights:SN.length,
+    max:ALL.reduce((a,p)=>a+p.max,0),
+    rl:ALL.reduce((a,p)=>a+p.rl,0),
+    co:ALL.reduce((a,p)=>a+p.co.length,0),
+    att:ALL.reduce((a,p)=>a+p.att,0)
+  };
+  T.bestCo=ALL.filter(p=>p.best).sort((a,b)=>b.best-a.best)[0]||null;
+  T.leader=RANKED[0];
+  T.archived=SEASON!==SEASONS[0];
+}
 
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const first=n=>n.split(' ')[0];
@@ -875,13 +986,20 @@ const one=n=>Number(n).toFixed(1).replace('.',',');
   document.getElementById('mark').dataset.order=order.join(',');
 })();
 
-document.getElementById('updated').textContent=`Sist oppdatert ${UPDATED}.`;
-
 /* ---------- header meta ---------- */
-document.getElementById('topmeta').innerHTML=
-  `<span class="tag">Sesong 2026</span>`+
-  `<span class="tag">${T.nights} kvelder logget</span>`+
-  `<span class="tag hot">Leder: ${esc(T.leader.name)} · ${T.leader.pts} p</span>`;
+function drawMeta(){
+  document.getElementById('topmeta').innerHTML=
+    `<span class="seasons" role="group" aria-label="Velg sesong">`+
+      SEASONS.map(y=>`<button type="button" data-season="${y}" aria-pressed="${y===SEASON}">${y}</button>`).join('')+
+    `</span>`+
+    (T.archived?`<span class="tag">Arkiv</span>`:'')+
+    `<span class="tag">${T.nights} kvelder logget</span>`+
+    `<span class="tag hot">Leder: ${esc(T.leader.name)} · ${T.leader.pts} p</span>`;
+  document.getElementById('fseason').textContent=`sesong ${SEASON}`;
+  document.getElementById('updated').textContent=T.archived
+    ? 'Sesongen er avsluttet – tallene står slik de var ved sesongslutt.'
+    : `Sist oppdatert ${UPDATED}.`;
+}
 
 /* ---------- views ---------- */
 const VIEWS=[
@@ -914,21 +1032,35 @@ function ladderBlock(){
 }
 
 /* ----- Ranking ----- */
-let openId=null, query='';
+let query='';
+const plink=(id,name)=>`<button class="plink" type="button" data-player="${id}">${esc(name)}</button>`;
+
+function mvTag(p){
+  if(p.mv==null) return `<span class="mv new" title="Første kveld i loggen">ny</span>`;
+  if(p.mv>0) return `<span class="mv up" title="Opp ${p.mv} plass${p.mv===1?'':'er'} etter forrige kveld">▲${p.mv}</span>`;
+  if(p.mv<0) return `<span class="mv down" title="Ned ${-p.mv} plass${p.mv===-1?'':'er'} etter forrige kveld">▼${-p.mv}</span>`;
+  return `<span class="mv same" title="Uendret etter forrige kveld">–</span>`;
+}
+
 function vRank(){
-  return strip([
-    {k:'Leder',v:esc(first(T.leader.name)),s:`${T.leader.pts} poeng · ${T.leader.wins} seire`},
-    {k:'Klubbmester 2026',v:esc(first(CHAMP.navn)),s:esc(CHAMP.navn),c:'champ'},
+  const cells=[
+    {k:'Leder',v:esc(first(T.leader.name)),s:`${T.leader.pts} poeng · ${T.leader.wins} seire`}
+  ];
+  if(CHAMP) cells.push({k:`Klubbmester ${SEASON}`,v:esc(first(CHAMP.navn)),s:esc(CHAMP.navn),c:'champ'});
+  cells.push(
     {k:'Spillere',v:T.players,s:`${T.att} oppmøter til sammen`},
     {k:'180ere',v:T.max,s:`${T.rl} raske legg`},
     {k:'Høyeste utgang',v:T.bestCo?T.bestCo.best:'–',s:T.bestCo?esc(T.bestCo.name):''}
-  ])+
-  `<div class="block"><h2>Sammenlagt <span>trykk på en spiller for detaljer</span></h2>
-    <p class="hint">Ved lik poengsum rangeres den med best snitt per kveld øverst.</p>
+  );
+  return strip(cells)+
+  `<div class="block"><h2>Sammenlagt <span>trykk på en spiller for profil</span></h2>
+    <p class="hint">Ved lik poengsum rangeres den med best snitt per kveld øverst. Pilen til venstre viser
+      bevegelsen etter siste klubbkveld${SN.length?` (${esc(SN[SN.length-1].week.split(' – ')[0])})`:''}.</p>
     <input class="q" id="q" type="search" placeholder="Søk spiller…" value="${esc(query)}" autocomplete="off">
     <div class="board" id="board">${boardRows()}</div></div>`+
   ladderBlock();
 }
+
 function boardRows(){
   const q=query.trim().toLowerCase();
   const list=RANKED.filter(p=>!q||p.name.toLowerCase().includes(q));
@@ -937,8 +1069,11 @@ function boardRows(){
     const pod=p.rank<=3?` podium p${p.rank}`:(p.rank===4?' p4':'');
     const form=p.nights.slice(-6).map(n=>
       `<span class="fpip ${n.pos===1?'w':n.pos<=4?'t':''}" title="${esc(n.week)}: ${n.pos}. plass">${n.pos}</span>`).join('');
-    return `<button class="rowbtn${pod}" type="button" data-id="${p.id}" aria-expanded="${openId===p.id}">
-      <span class="pos">${p.rank}</span>
+    return `<button class="rowbtn${pod}" type="button" data-player="${p.id}">
+      <span class="posw">
+        <span class="pos">${p.rank<=3?`<span class="medal">${p.rank}</span>`:p.rank}</span>
+        ${mvTag(p)}
+      </span>
       <span class="who">
         <span class="nm">${esc(p.name)}</span>
         <span class="sub">
@@ -950,35 +1085,97 @@ function boardRows(){
       </span>
       <span class="score"><span class="pts">${p.pts}</span><span class="lbl">poeng</span>
         <span class="form">${form}</span></span>
-    </button>`+(openId===p.id?detail(p):'');
+    </button>`;
   }).join('');
 }
-function detail(p){
+
+/* ===================== SPILLERPROFIL =====================
+   Alt vi vet om én spiller i valgt sesong: nøkkeltall, plasseringskurve,
+   finaler, og hver kveld hen har spilt. */
+function sparkRank(p){
+  const pts=[];
+  HIST.forEach((h,i)=>{ const r=h.rank[p.id]; if(r) pts.push({i:i,r:r,week:h.week}); });
+  if(pts.length<2) return '';
+  const W=600,H=150,padX=10,padT=14,padB=14;
+  const lo=Math.max(1,pts.reduce((a,q)=>Math.min(a,q.r),99)-1);
+  const hi=pts.reduce((a,q)=>Math.max(a,q.r),1)+1;
+  const span=Math.max(1,hi-lo);
+  const X=i=>padX+(HIST.length<2?0:(i/(HIST.length-1))*(W-2*padX));
+  const Y=r=>padT+((r-lo)/span)*(H-padT-padB);
+  const line=pts.map(q=>`${X(q.i).toFixed(1)},${Y(q.r).toFixed(1)}`).join(' ');
+  const area=`${X(pts[0].i).toFixed(1)},${(H-padB).toFixed(1)} ${line} ${X(pts[pts.length-1].i).toFixed(1)},${(H-padB).toFixed(1)}`;
+  const dots=pts.map(q=>
+    `<circle cx="${X(q.i).toFixed(1)}" cy="${Y(q.r).toFixed(1)}" r="4" fill="var(--bull)"><title>${esc(q.week)}: ${q.r}. plass</title></circle>`).join('');
+  const now=pts[pts.length-1].r, bestRank=pts.reduce((a,q)=>Math.min(a,q.r),99);
+  return `<div class="block"><h2>Plassering gjennom sesongen <span>etter hver klubbkveld</span></h2>
+    <div class="sparkbox">
+      <div class="sparklab"><span>${lo===1?'1. plass':lo+'. plass'}</span><span>beste: ${bestRank}. · nå: ${now}.</span></div>
+      <svg class="spark" viewBox="0 0 ${W} ${H}" role="img"
+           aria-label="Plassering i rankingen etter hver kveld, fra ${pts[0].r}. til ${now}. plass">
+        <polygon points="${area}" fill="var(--bull)" opacity=".08"/>
+        <polyline points="${line}" fill="none" stroke="var(--bull)" stroke-width="2.5"
+                  stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+        ${dots}
+      </svg>
+      <div class="sparklab"><span>${hi}. plass</span><span>${esc(pts[0].week.split(' – ')[0])} → ${esc(pts[pts.length-1].week.split(' – ')[0])}</span></div>
+    </div></div>`;
+}
+
+function vProfile(p){
+  const g=p.rank<=3?` g${p.rank}`:'';
+  const nn=[...p.nights].reverse();
   const rk=p.raske.map((v,i)=>v?`<span class="chip${DARTS[i]<=16?' hi':''}">${DARTS[i]} piler ×${v}</span>`:'').join('');
   const co=p.co.length?p.co.map(v=>`<span class="chip${v>=141?' hi':''}">${v}</span>`).join(''):'<span class="empty">Ingen over 100 ennå.</span>';
-  const hist=p.nights.slice().reverse().slice(0,8).map(n=>
-    `<div class="kv"><span>${esc(n.week.split(' – ')[0])}</span><b>${n.pos}. → +${n.gain}</b></div>`).join('')
-    ||'<span class="empty">Ingen kvelder i loggen.</span>';
-  return `<div class="detail">
+  const fin=p.finals.length?`<div class="block"><h2>Finaler <span>${p.finals.length} denne sesongen</span></h2>
+    <div class="panel panel-pad">${[...p.finals].reverse().map(f=>
+      `<div class="finrow"><span class="fw ${f.won?'won':'lost'}">${f.won?'Vant':'Tapte'}</span>
+        <span>${esc(f.text)} <span class="mini">— ${esc(f.week.split(' – ')[0])}</span></span></div>`).join('')}</div></div>`:'';
+  return `<button class="back" type="button" id="back">← Tilbake til ${esc(VIEWS.find(v=>v.id===current).label.toLowerCase())}</button>
+  <div class="phead">
+    <div class="pring${g}"><b>${p.rank}</b><i>plass</i></div>
+    <div class="pid"><h2>${esc(p.name)}</h2>
+      <div class="psub">${p.pts} poeng · ${p.att} kveld${p.att===1?'':'er'} · ${one(p.avg)} poeng per kveld · sesong ${SEASON}</div></div>
+  </div>`+
+  strip([
+    {k:'Plassering',v:p.rank+'.',s:`av ${T.players} spillere`,c:p.rank<=3?'champ':''},
+    {k:'Poeng',v:p.pts,s:`${one(p.avg)} per kveld`},
+    {k:'Kvelder',v:p.att,s:`av ${T.nights} logget`},
+    {k:'Kveldsseire',v:p.wins,s:p.finals.length?`${p.finals.length} finale${p.finals.length===1?'':'r'}`:'ingen finaler'}
+  ])+
+  `<div class="detail">
     <div class="dcol"><h4>Sesongen</h4>
-      <div class="kv"><span>Poeng</span><b>${p.pts}</b></div>
-      <div class="kv"><span>Kvelder</span><b>${p.att}</b></div>
+      <div class="kv"><span>Beste plassering</span><b>${p.bestPos?p.bestPos+'.':'–'}</b></div>
       <div class="kv"><span>Snitt per kveld</span><b>${one(p.avg)}</b></div>
-      <div class="kv"><span>Kveldsseire</span><b>${p.wins}</b></div>
-      <div class="kv"><span>180ere</span><b>${p.max}</b></div>
-      <div class="kv"><span>Beste leg</span><b>${p.bestLeg?p.bestLeg+' piler':'–'}</b></div>
+      <div class="kv"><span>180ere</span><b>${p.max||'–'}</b></div>
+      <div class="kv"><span>Raske legg</span><b>${p.rl||'–'}</b></div>
+      <div class="kv"><span>Raskeste leg</span><b>${p.bestLeg?p.bestLeg+' piler':'–'}</b></div>
+      <div class="kv"><span>Beste utgang</span><b>${p.best||'–'}</b></div>
     </div>
     <div class="dcol"><h4>Raske legg</h4>
       ${rk?`<div class="chips">${rk}</div>`:'<span class="empty">Ingen registrert.</span>'}</div>
     <div class="dcol"><h4>Utganger over 100</h4><div class="chips">${co}</div></div>
-    <div class="dcol"><h4>Siste kvelder</h4>${hist}</div>
-  </div>`;
+  </div>`+
+  sparkRank(p)+
+  fin+
+  `<div class="block"><h2>Kveld for kveld <span>nyeste øverst</span></h2>
+    <div class="panel scroll"><table>
+      <thead><tr><th>Kveld</th><th class="r mono">Plass</th><th class="r mono">Felt</th><th class="r mono">Poeng</th>
+        <th class="r mono">180</th><th class="r mono">Raske legg</th><th>Utganger over 100</th></tr></thead>
+      <tbody>${nn.map(n=>`<tr>
+        <td>${esc(n.week.split(' – ')[0])} <span class="mini">${esc(n.week.split(' – ')[1]||'')}</span></td>
+        <td class="r mono" style="font-weight:600${n.pos===1?';color:var(--brass)':n.pos<=4?';color:var(--wire-ink)':''}">${n.pos}.</td>
+        <td class="r mono" style="color:var(--muted)">${n.field}</td>
+        <td class="r mono">+${n.gain}</td>
+        <td class="r mono">${n.max||'·'}</td>
+        <td class="r mono">${n.rl||'·'}</td>
+        <td>${n.co.length?`<span class="chips">${n.co.map(v=>`<span class="chip${v>=141?' hi':''}">${v}</span>`).join('')}</span>`:'<span class="empty">·</span>'}</td>
+      </tr>`).join('')}</tbody></table></div></div>`;
 }
 
 /* ----- Kvelder ----- */
 function vNights(){
-  const nn=[...NIGHTS].reverse();
-  const busiest=[...NIGHTS].sort((a,b)=>b.res.length-a.res.length)[0];
+  const nn=[...SN].reverse();
+  const busiest=[...SN].sort((a,b)=>b.res.length-a.res.length)[0];
   return strip([
     {k:'Kvelder logget',v:T.nights,s:`snitt ${one(T.att/T.nights)} spillere`},
     {k:'Størst oppmøte',v:busiest.res.length,s:esc(busiest.week.split(' – ')[0])},
@@ -1001,7 +1198,7 @@ function vNights(){
           const g=points(r.pos);
           return `<div class="res-row${r.pos===1?' win':''}">
             <span class="rp">${r.pos}.</span>
-            <span class="rn">${esc(P[r.id]?P[r.id].name:'Ukjent')}</span>
+            <span class="rn">${P[r.id]?plink(r.id,P[r.id].name):'Ukjent'}</span>
             <span class="rr">
               ${r.note?`<span class="tag">${esc(r.note)}</span>`:''}
               ${r.m?`<span class="badge b180">${r.m}× 180</span>`:''}
@@ -1036,7 +1233,7 @@ function vLegs(){
     <p class="hint">Sortert etter raskeste leg. Mørkere celle = flere legg på det pileantallet.</p>
     <div class="panel scroll"><table>
       <thead><tr><th>Spiller</th>${DARTS.map(d=>`<th class="r mono">${d}</th>`).join('')}<th class="r mono">Sum</th></tr></thead>
-      <tbody>${rows.map(p=>`<tr><td class="name">${esc(p.name)}</td>
+      <tbody>${rows.map(p=>`<tr><td class="name">${plink(p.id,p.name)}</td>
         ${p.raske.map((v,i)=>{
           const mx=colMax[i]||1;
           const a=v?(0.14+0.5*(v/mx)).toFixed(2):0;
@@ -1068,7 +1265,7 @@ function vCo(){
     <div class="panel scroll"><table>
       <thead><tr><th>Spiller</th><th class="r mono">Beste</th><th class="r mono">Antall</th><th>Alle utganger</th></tr></thead>
       <tbody>${byP.sort((a,b)=>b.best-a.best).map(p=>`<tr>
-        <td class="name">${esc(p.name)}</td>
+        <td class="name">${plink(p.id,p.name)}</td>
         <td class="r mono" style="font-weight:600">${p.best}</td>
         <td class="r mono">${p.co.length}</td>
         <td><span class="chips">${p.co.map(v=>`<span class="chip${v>=141?' hi':''}">${v}</span>`).join('')}</span></td>
@@ -1096,7 +1293,7 @@ function vAvg(){
         <th class="r mono">Snitt</th><th class="r mono">Seire</th></tr></thead>
       <tbody>${q.concat(rest).map((p,i)=>`<tr>
         <td class="r mono" style="color:var(--muted)">${i<q.length?i+1:'–'}</td>
-        <td class="name">${esc(p.name)}</td>
+        <td class="name">${plink(p.id,p.name)}</td>
         <td class="r mono">${p.att}</td>
         <td class="r mono">${p.pts}</td>
         <td class="r mono" style="font-weight:600;color:${i<q.length?'var(--wire-ink)':'var(--muted)'}">${one(p.avg)}</td>
@@ -1109,7 +1306,7 @@ function vAvg(){
    spiller godt nå — ikke hvem som har møtt opp flest ganger siden april. */
 const FORM_N=5;
 function vForm(){
-  const last=NIGHTS.slice(-FORM_N);
+  const last=SN.slice(-FORM_N);
   const st={};
   last.forEach((n,ni)=>n.res.forEach(r=>{
     const s=st[r.id]||(st[r.id]={id:r.id,pts:0,n:0,best:99,runs:[]});
@@ -1141,7 +1338,7 @@ function vForm(){
         <th class="r mono">Sesong</th><th></th><th>Plasseringer</th></tr></thead>
       <tbody>${rows.map(r=>`<tr>
         <td class="r mono" style="color:var(--muted)">${r.fr}</td>
-        <td class="name">${esc(r.p.name)}</td>
+        <td class="name">${plink(r.p.id,r.p.name)}</td>
         <td class="r mono" style="font-weight:600">${r.pts}</td>
         <td class="r mono">${r.n}/${last.length}</td>
         <td class="r mono">${one(r.pts/r.n)}</td>
@@ -1171,7 +1368,7 @@ function vRec(){
   const mW=best(ALL,p=>p.wins);
   add('Flest kveldsseire',mW.wins,mW.name,'i sesongen');
   const mA=best(ALL,p=>p.att);
-  add('Flest oppmøter',mA.att,mA.name,`av ${NIGHTS.length} klubbkvelder`);
+  add('Flest oppmøter',mA.att,mA.name,`av ${SN.length} klubbkvelder`);
   const mC=best(ALL.filter(p=>p.co.length),p=>p.co.length);
   if(mC) add('Flest utganger over 100',mC.co.length,mC.name,'i sesongen');
   const qual=ALL.filter(p=>p.att>=MIN_ATT);
@@ -1180,7 +1377,7 @@ function vRec(){
 
   // kveldsrekorder fra loggen
   let n180={v:0},nRl={v:0},nCo={v:0};
-  NIGHTS.forEach(n=>{
+  SN.forEach(n=>{
     const wk=n.week.split(' – ')[0];
     n.res.forEach(r=>{
       if((r.m||0)>n180.v) n180={v:r.m,k:r.id,wk};
@@ -1192,7 +1389,7 @@ function vRec(){
   if(n180.v) add('Flest 180ere på én kveld',n180.v,P[n180.k].name,n180.wk);
   if(nRl.v) add('Flest raske legg på én kveld',nRl.v,P[nRl.k].name,nRl.wk);
   if(nCo.v>1) add('Flest høye utganger på én kveld',nCo.v,P[nCo.k].name,nCo.wk);
-  const bigN=[...NIGHTS].sort((a,b)=>b.res.length-a.res.length)[0];
+  const bigN=[...SN].sort((a,b)=>b.res.length-a.res.length)[0];
   add('Størst oppmøte',bigN.res.length+' spillere',bigN.week.split(' – ')[0],'på én klubbkveld');
 
   // rekker
@@ -1200,7 +1397,7 @@ function vRec(){
     let bestRun={v:0};
     Object.keys(P).forEach(id=>{
       let run=0;
-      NIGHTS.forEach(n=>{
+      SN.forEach(n=>{
         const r=n.res.find(x=>x.id===Number(id));
         if(test(r)){ run++; if(run>bestRun.v) bestRun={v:run,k:Number(id)}; }
         else run=0;
@@ -1215,8 +1412,8 @@ function vRec(){
   const sAtt=streak(r=>!!r);
   if(sAtt.v>1) add('Lengste oppmøterekke',sAtt.v+' kvelder',P[sAtt.k].name,'på rad i loggen');
 
-  return `<div class="block"><h2>Rekorder <span>sesong 2026</span></h2>
-    <p class="hint">Alle ${NIGHTS.length} klubbkveldene i sesongen ligger i loggen, så hver rekord kan knyttes til kvelden den ble satt. Klubbmesterskapet og sommerturneringen er egne arrangementer og teller ikke.</p>
+  return `<div class="block"><h2>Rekorder <span>sesong ${SEASON}</span></h2>
+    <p class="hint">Alle ${SN.length} klubbkveldene i sesongen ligger i loggen, så hver rekord kan knyttes til kvelden den ble satt. Klubbmesterskapet og sommerturneringen er egne arrangementer og teller ikke.</p>
     <div class="recs">${recs.map(r=>`
       <div class="rec${r.star?' star':''}">
         <div class="rl">${r.l}</div>
@@ -1272,19 +1469,20 @@ const TOURNAMENTS=[
 function vTrn(){
   // «Frank C» og «Frank Cassidy» er samme mann – winner-feltet holder styr på det
   const wins={};
-  TOURNAMENTS.forEach(t=>{wins[t.winner]=(wins[t.winner]||0)+1;});
+  STR.forEach(t=>{wins[t.winner]=(wins[t.winner]||0)+1;});
+  if(!STR.length) return `<p class="empty">Ingen turneringer registrert i sesongen ${SEASON}.</p>`;
   const top=Object.entries(wins).sort((a,b)=>b[1]-a[1])[0];
-  const deltakere=TOURNAMENTS.reduce((a,t)=>a+t.n,0);
+  const deltakere=STR.reduce((a,t)=>a+t.n,0);
+  const siste=STR[STR.length-1];
   return strip([
-    {k:'Turneringer',v:TOURNAMENTS.length,s:'utenom klubbrankingen'},
+    {k:'Turneringer',v:STR.length,s:'utenom klubbrankingen'},
     {k:'Flest seire',v:top[1]+'×',s:esc(top[0]),c:'champ'},
     {k:'Deltakere totalt',v:deltakere,s:'inkludert gjestespillere'},
-    {k:'Siste turnering',v:esc(TOURNAMENTS[TOURNAMENTS.length-1].date.split(' 2026')[0]),
-     s:esc(TOURNAMENTS[TOURNAMENTS.length-1].name)}
+    {k:'Siste turnering',v:esc(siste.date.replace(' '+SEASON,'')),s:esc(siste.name)}
   ])+
   `<div class="block"><h2>Turneringer <span>gir ikke rankingpoeng</span></h2>
    <p class="hint">Mesterskap og åpne turneringer med spillere fra andre klubber holdes utenfor sammenlagtrankingen, slik at poengstigen bare måler klubbkveldene. Resultatlistene står her slik de ble lagt ut.</p>
-   <div class="trns">${TOURNAMENTS.map(t=>`
+   <div class="trns">${STR.map(t=>`
      <article class="trn">
        <header><h3>${esc(t.name)}</h3><span class="tag">${esc(t.date)}</span>
          <span class="m">${t.n} deltakere</span></header>
@@ -1299,28 +1497,40 @@ function vTrn(){
 }
 
 /* ---------- shell ---------- */
-let current='rank';
+let current='rank', profileId=null;
 const tabs=document.getElementById('tabs'), views=document.getElementById('views');
 tabs.innerHTML=VIEWS.map(v=>
   `<button type="button" role="tab" data-v="${v.id}" aria-selected="${v.id===current}">${v.label}</button>`).join('');
 function draw(){
-  tabs.querySelectorAll('button').forEach(b=>b.setAttribute('aria-selected',b.dataset.v===current));
-  views.innerHTML=VIEWS.find(v=>v.id===current).render();
+  const onProfile=profileId!=null&&P[profileId];
+  tabs.querySelectorAll('button').forEach(b=>
+    b.setAttribute('aria-selected',!onProfile&&b.dataset.v===current));
+  views.innerHTML=onProfile?vProfile(P[profileId]):VIEWS.find(v=>v.id===current).render();
 }
+function toTop(){ window.scrollTo({top:0,behavior:'smooth'}); }
+
 tabs.addEventListener('click',e=>{
   const b=e.target.closest('button[data-v]'); if(!b) return;
-  current=b.dataset.v; draw(); window.scrollTo({top:0,behavior:'smooth'});
+  current=b.dataset.v; profileId=null; draw(); toTop();
 });
 views.addEventListener('click',e=>{
-  const r=e.target.closest('.rowbtn'); if(!r) return;
-  const id=Number(r.dataset.id);
-  openId=openId===id?null:id;
-  document.getElementById('board').innerHTML=boardRows();
+  if(e.target.closest('#back')){ profileId=null; draw(); toTop(); return; }
+  const pb=e.target.closest('[data-player]'); if(!pb) return;
+  const id=Number(pb.dataset.player);
+  if(!P[id]) return;
+  profileId=id; draw(); toTop();
 });
 views.addEventListener('input',e=>{
   if(e.target.id!=='q') return;
-  query=e.target.value; openId=null;
+  query=e.target.value;
   document.getElementById('board').innerHTML=boardRows();
+});
+
+/* sesongbytte */
+document.getElementById('topmeta').addEventListener('click',e=>{
+  const b=e.target.closest('button[data-season]'); if(!b) return;
+  const y=Number(b.dataset.season); if(y===SEASON) return;
+  SEASON=y; profileId=null; query=''; rebuild(); drawMeta(); draw(); toTop();
 });
 
 /* theme toggle: explicit choice wins over the OS in both directions */
@@ -1333,6 +1543,8 @@ document.getElementById('themebtn').addEventListener('click',()=>{
 });
 try{const t=localStorage.getItem('kdc-theme'); if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}
 
+rebuild();
+drawMeta();
 draw();
 </script>
 
