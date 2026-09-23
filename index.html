@@ -266,6 +266,25 @@ td.mono,th.mono{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabul
 .rec .rn{font-size:14px;font-weight:600}
 .rec .rc{font-size:12px;color:var(--muted)}
 
+/* ---------- turneringer ---------- */
+.trns{display:flex;flex-direction:column;gap:16px}
+.trn{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.trn>header{display:flex;align-items:baseline;gap:10px;padding:12px 15px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.trn h3{font-size:19px;text-transform:uppercase;letter-spacing:.02em}
+.trn>header .m{font-size:12px;color:var(--muted);margin-left:auto}
+.tnote{font-size:12px;color:var(--muted);padding:10px 15px 0;line-height:1.5}
+.tplaces{display:flex;flex-direction:column;padding:12px 15px 15px}
+.tp{display:grid;grid-template-columns:58px 1fr;gap:12px;align-items:baseline;padding:6px 0;border-bottom:1px dotted var(--line)}
+.tp:last-child{border-bottom:none}
+.tp .pl{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);white-space:nowrap}
+.tp .nm2{font-size:14px;line-height:1.45}
+.tp.g1{background:var(--brass-wash);border-radius:7px;padding:10px 12px;margin:0 -12px 4px;border-bottom:none}
+.tp.g1 .pl{color:var(--brass);font-weight:700}
+.tp.g1 .nm2{font-family:'Barlow Condensed',sans-serif;font-size:23px;font-weight:700;color:var(--brass);line-height:1.1}
+.tp.g2 .nm2,.tp.g3 .nm2{font-weight:600}
+.thead{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;
+  padding:12px 0 4px;border-top:1px solid var(--line);margin-top:8px}
+
 footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;color:var(--faint)}
 
 @media (max-width:640px){
@@ -868,6 +887,7 @@ const VIEWS=[
   {id:'rank',label:'Ranking',render:vRank},
   {id:'form',label:'Form',render:vForm},
   {id:'nights',label:'Kvelder',render:vNights},
+  {id:'trn',label:'Turneringer',render:vTrn},
   {id:'legs',label:'180 & raske legg',render:vLegs},
   {id:'co',label:'Utganger',render:vCo},
   {id:'avg',label:'Snitt per kveld',render:vAvg},
@@ -1202,6 +1222,78 @@ function vRec(){
         <div class="rn">${esc(r.n)}</div>
         <div class="rc">${esc(r.c)}</div>
       </div>`).join('')}</div></div>`;
+}
+
+
+/* ===================== TURNERINGER =====================
+   Mesterskap og åpne turneringer med gjestespillere. Disse gir ikke
+   rankingpoeng — resultatlistene står som de ble lagt ut. */
+const TOURNAMENTS=[
+ {name:"Klubbmesterskap 2026", date:"17. januar 2026", iso:"2026-01-17", n:18, winner:"Frank Cassidy",
+  note:"Kåringen av klubbmester for sesongen.",
+  places:[
+   {p:"1.",     names:["Frank Cassidy"]},
+   {p:"2.",     names:["Mathias Tjoland"]},
+   {p:"3.",     names:["Jostein Lunde"]},
+   {p:"4.",     names:["Arve Kyvik"]},
+   {p:"5.–8.",  names:["Mette Nilsen","Birger Hervik","Kristoffer Nordbø","Barrie Williamson"]},
+   {p:"9.–16.", names:["Sindre Høines","Glenn Hansen","Gunnar Laurhammer","Ivan Riquelme Sanchez","Svend Atle Høie","Kjartan Vestre","Harald Gerhard Veland","Filip Gyde"]},
+   {p:"17.–18.",names:["Henry Chau","Rasmus Steinnes"]}
+  ]},
+ {name:"Sommerturnering", date:"27. juni 2026", iso:"2026-06-27", n:23, winner:"Kjartan Vestre",
+  note:"Åpen turnering med besøk fra Ålgård, Odda, Bømlo, Sveio og Stord.",
+  places:[
+   {p:"1.",     names:["Kjartan Vestre"]},
+   {p:"2.",     names:["Olav Aase"]},
+   {p:"3.–4.",  names:["Stig Jarle Knudsen","Henning Egholm"]},
+   {p:"5.–8.",  names:["Barrie Williamson","Arve Kyvik","Sindre Høines","Slawomir Gralewski"]},
+   {p:"9.–16.", names:["Ivan Riquelme Sanchez","Harald Gerhard Veland","Hans-Fredrik Magnussen","Geir Atle Bårdsen","Kasper Berge","Vegard Lie","Gnob Kwela","Birger Hervik"]},
+   {p:"17.–23.",names:["Mette Nilsen","Glenn Hansen","Marius Søvik","Kenneth Esperø","Veronica Knudsen","Sandre Elise Seljen","Roy Hagen"]}
+  ]},
+ {name:"Lørdagsturnering", date:"29. august 2026", iso:"2026-08-29", n:23, winner:"Frank Cassidy",
+  note:"Åpen turnering med A- og B-sluttspill. Deltakerne står med fornavn slik de ble lagt ut.",
+  places:[
+   {p:"1.",     names:["Frank C"]},
+   {p:"2.",     names:["Edgar"]},
+   {p:"3.",     names:["Ivan"]},
+   {p:"4.",     names:["Kjartan"]},
+   {p:"5.–8.",  names:["Barrie","Geir Atle","Birger","Oddgeir"], sub:"ut i kvartfinalen"},
+   {p:"9.–16.", names:["Eirik","Marita","Sindre","Valerias","Bjarte","Jarle","Mette","Leiv Magne"], sub:"ut i 1/8-finalen"},
+   {p:"17.",    names:["Aleksander"], head:"B-sluttspill"},
+   {p:"18.",    names:["Glenn"]},
+   {p:"19.",    names:["Andreas"]},
+   {p:"20.",    names:["Bjørn Tore"]},
+   {p:"21.–23.",names:["Oscar","Senior","Andre"]}
+  ]}
+];
+
+function vTrn(){
+  // «Frank C» og «Frank Cassidy» er samme mann – winner-feltet holder styr på det
+  const wins={};
+  TOURNAMENTS.forEach(t=>{wins[t.winner]=(wins[t.winner]||0)+1;});
+  const top=Object.entries(wins).sort((a,b)=>b[1]-a[1])[0];
+  const deltakere=TOURNAMENTS.reduce((a,t)=>a+t.n,0);
+  return strip([
+    {k:'Turneringer',v:TOURNAMENTS.length,s:'utenom klubbrankingen'},
+    {k:'Flest seire',v:top[1]+'×',s:esc(top[0]),c:'champ'},
+    {k:'Deltakere totalt',v:deltakere,s:'inkludert gjestespillere'},
+    {k:'Siste turnering',v:esc(TOURNAMENTS[TOURNAMENTS.length-1].date.split(' 2026')[0]),
+     s:esc(TOURNAMENTS[TOURNAMENTS.length-1].name)}
+  ])+
+  `<div class="block"><h2>Turneringer <span>gir ikke rankingpoeng</span></h2>
+   <p class="hint">Mesterskap og åpne turneringer med spillere fra andre klubber holdes utenfor sammenlagtrankingen, slik at poengstigen bare måler klubbkveldene. Resultatlistene står her slik de ble lagt ut.</p>
+   <div class="trns">${TOURNAMENTS.map(t=>`
+     <article class="trn">
+       <header><h3>${esc(t.name)}</h3><span class="tag">${esc(t.date)}</span>
+         <span class="m">${t.n} deltakere</span></header>
+       ${t.note?`<p class="tnote">${esc(t.note)}</p>`:''}
+       <div class="tplaces">${t.places.map((pl,i)=>
+         `${pl.head?`<div class="thead">${esc(pl.head)}</div>`:''}
+          <div class="tp${i===0&&!pl.head?' g1':i===1?' g2':i===2?' g3':''}">
+            <span class="pl">${esc(pl.p)}</span>
+            <span class="nm2">${pl.names.map(esc).join(', ')}${pl.sub?` <span class="mini">— ${esc(pl.sub)}</span>`:''}</span>
+          </div>`).join('')}</div>
+     </article>`).join('')}</div></div>`;
 }
 
 /* ---------- shell ---------- */
