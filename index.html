@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="no">
+<html lang="nb">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Sammenlagtranking, kveldsresultater, 180ere, raske legg og hoye utganger for Karmoy Darts Club, sesong 2026.">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Klubbranking for Karmøy Darts Club – poeng, 180ere, raske legg og utganger kveld for kveld.">
 <meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Karmøy Darts Club – ranking">
+<meta property="og:description" content="Sammenlagtranking, form, kveldsresultater og rekorder for Karmøy Darts Club.">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Karmøy Darts Club">
-<meta property="og:title" content="Karmøy Darts Club – ranking 2026">
-<meta property="og:description" content="Sammenlagtstillingen, kveld for kveld, 180ere, raske legg og høye utganger. Oppdateres etter hver klubbkveld.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23141310'/%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='%23e3dcc6' stroke-width='9'/%3E%3Ccircle cx='50' cy='50' r='17' fill='%23146b46'/%3E%3Ccircle cx='50' cy='50' r='8' fill='%23a82f24'/%3E%3C/svg%3E">
+<meta property="og:url" content="https://karmoydarts.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 32 32&apos;%3E%3Ccircle cx=&apos;16&apos; cy=&apos;16&apos; r=&apos;15&apos; fill=&apos;%231b1916&apos;/%3E%3Ccircle cx=&apos;16&apos; cy=&apos;16&apos; r=&apos;11&apos; fill=&apos;%23e3dcc6&apos;/%3E%3Ccircle cx=&apos;16&apos; cy=&apos;16&apos; r=&apos;7&apos; fill=&apos;%231b1916&apos;/%3E%3Ccircle cx=&apos;16&apos; cy=&apos;16&apos; r=&apos;4&apos; fill=&apos;%23146b46&apos;/%3E%3Ccircle cx=&apos;16&apos; cy=&apos;16&apos; r=&apos;2&apos; fill=&apos;%23a82f24&apos;/%3E%3C/svg%3E">
 <title>Karmøy Darts Ranking</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
@@ -819,6 +819,12 @@ const NIGHTS=[
     {id:12,pos:8},
     {id:11,pos:9}
   ]},
+  {week:"Uke 36 – 2. september 2026",date:"2026-09-02",res:[
+    {id:3,pos:1},
+    {id:2,pos:2},
+    {id:5,pos:3},
+    {id:4,pos:4}
+  ]},
   {week:"Uke 37 – 9. september 2026",date:"2026-09-09",final:"Kjartan Vestre – Glenn Hansen 4–0",res:[
     {id:3,pos:1,co:[113],r:[0,0,0,0,1,0,1,3,0]},
     {id:6,pos:2,r:[0,0,0,0,0,0,0,0,2]},
@@ -847,11 +853,29 @@ const NIGHTS=[
     {id:6,pos:5},
     {id:5,pos:6},
     {id:7,pos:7}
+  ]},
+  {week:"Uke 40 – 30. september 2026",date:"2026-09-30",final:"Kjartan Vestre – Henry Chau 4–0",res:[
+    {id:3,pos:1,m:1,co:[116],r:[0,1,1,0,1,0,0,2,0],note:"Puljevinner"},
+    {id:15,pos:2,m:1},
+    {id:4,pos:3,m:1,r:[0,0,0,0,0,0,0,1,0]},
+    {id:7,pos:4,r:[0,0,0,0,0,0,0,1,0]},
+    {id:11,pos:5}
+  ]},
+  {week:"Uke 41 – 7. oktober 2026",date:"2026-10-07",res:[
+    {id:8,pos:1,note:"Puljevinner"},
+    {id:5,pos:2},
+    {id:11,pos:3}
+  ]},
+  {week:"Uke 42 – 14. oktober 2026",date:"2026-10-14",res:[
+    {id:20,pos:1,m:1},
+    {id:11,pos:2},
+    {id:4,pos:3,note:"Puljevinner"},
+    {id:5,pos:4}
   ]}
 ];
 
 /* Dato som vises nederst på siden – oppdater sammen med ny kveld. */
-const UPDATED="30. september 2026 · til og med klubbkvelden 23. september";
+const UPDATED="21. oktober 2026 · til og med klubbkvelden 14. oktober";
 
 /* Klubbmesterskapet teller ikke i rankingen, men mesteren vises ved siden av lederen.
    Nøkkelen er sesongen, slik at arkiverte sesonger beholder sin egen mester. */
