@@ -112,6 +112,8 @@ h1,h2,h3,.disp{font-family:'Barlow Condensed','Archivo Narrow',system-ui,sans-se
 .tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;
   padding:2px 8px;border-radius:4px;background:var(--surface);border:1px solid var(--line);color:var(--muted)}
 .tag.hot{background:var(--bull-wash);border-color:transparent;color:var(--bull-ink)}
+.tag.upd{background:var(--wire-wash);border-color:transparent;color:var(--wire-ink);display:inline-flex;align-items:center;gap:5px}
+.tag.upd::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--wire);flex:0 0 auto}
 
 /* ---------- nav ---------- */
 nav{display:flex;gap:2px;margin:0 0 22px;overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:none}
@@ -893,7 +895,10 @@ const NIGHTS=[
 ];
 
 /* Dato som vises nederst på siden – oppdater sammen med ny kveld. */
-const UPDATED="30. oktober 2026 · til og med klubbkvelden 28. oktober";
+/* Oppdater disse to når en ny kveld legges inn. Datoen vises både som merke
+   øverst på siden og i fotnoten nederst. */
+const UPDATED_DATE="30. oktober";
+const UPDATED_NOTE="til og med klubbkvelden 28. oktober";
 
 /* Klubbmesterskapet teller ikke i rankingen, men mesteren vises ved siden av lederen.
    Nøkkelen er sesongen, slik at arkiverte sesonger beholder sin egen mester. */
@@ -1045,11 +1050,12 @@ function drawMeta(){
     `</span>`+
     (T.archived?`<span class="tag">Arkiv</span>`:'')+
     `<span class="tag">${T.nights} kvelder logget</span>`+
-    `<span class="tag hot">Leder: ${esc(T.leader.name)} · ${T.leader.pts} p</span>`;
+    `<span class="tag hot">Leder: ${esc(T.leader.name)} · ${T.leader.pts} p</span>`+
+    (T.archived?'':`<span class="tag upd" title="Siden ble sist oppdatert ${esc(UPDATED_DATE)} ${SEASON} – ${esc(UPDATED_NOTE)}">Oppdatert ${esc(UPDATED_DATE)}</span>`);
   document.getElementById('fseason').textContent=`sesong ${SEASON}`;
   document.getElementById('updated').textContent=T.archived
     ? 'Sesongen er avsluttet – tallene står slik de var ved sesongslutt.'
-    : `Sist oppdatert ${UPDATED}.`;
+    : `Sist oppdatert ${UPDATED_DATE} ${SEASON} · ${UPDATED_NOTE}.`;
 }
 
 /* ---------- views ---------- */
